@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import chalk from 'chalk'
 const liveServer = require("live-server")
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { create } from './lagom-create'
 import { server } from './lagom-server'
 import { help } from './lagom-help'
