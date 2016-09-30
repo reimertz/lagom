@@ -3,7 +3,7 @@
 <title>{{title}}</title>
 <link rel=stylesheet href="styles/lagom.css">
 
-<header> ◩ | {{header}} </header>
+<header> ◩ | {{title}} {{#twitter}}| <a href="https://twitter.com/{{twitter}}">{{twitter}}</a>{{/twitter}}</header>
 
 <section>
   <h1>{{title}}</h1>
@@ -15,9 +15,9 @@
 
 <section>
   <h1>the end</h1>
-  <h3><a href="//{{homepage}}">{{homepage}}</a></h3>
-  <p>twitter: <a href="//twitter.com/{{twitter}}">{{twitter}}</a></p>
-  <p>github: <a href="//github.com/{{github}}">{{github}}</a></p>
+  {{#homepage}}<h3><a href="//{{homepage}}">{{homepage}}</a></h3>{{/homepage}}
+  {{#twitter}}<p>twitter: <a href="https://twitter.com/{{twitter}}">{{twitter}}</a></p>{{/twitter}}
+  {{#github}}<p>github: <a href="https://github.com/{{github}}">{{github}}</a></p>{{/github}}
   <small>
     <p>created with lagom.js</p> <!-- please leave this here <3 -->
   </small>

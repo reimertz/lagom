@@ -2,6 +2,7 @@ import fsp from 'fs-promise'
 import askForInput from './helpers/ask-for-input'
 import askForSelection from './helpers/ask-for-selection'
 import chalk from 'chalk'
+import Mustache from 'mustache'
 
 const starterLocation = `${__dirname}/../starter`
 
@@ -32,14 +33,13 @@ async function moveStarterToFolder(folderName) {
 
 async function generateIndex(folderName, title, homepage, twitter, github) {
   const indexLocation = `./${folderName}/index.html`
-  const header = `${title} ${ twitter ? ` | @${twitter}`: '' }`
   const template = await fsp.readFile(`./${folderName}/index.html`, `utf8`)
-  const rendered = template
-                    .replace(/{{title}}/g, title)
-                    .replace(/{{header}}/g, header)
-                    .replace(/{{homepage}}/g, homepage)
-                    .replace(/{{twitter}}/g, twitter)
-                    .replace(/{{github}}/g, github)
+  const rendered = Mustache.render(template, {
+    title,
+    homepage,
+    twitter,
+    github
+  })
 
   return await fsp.outputFile(indexLocation, rendered)
 }
