@@ -31,6 +31,9 @@ const binConfigs = binFiles.map(binFile => {
         exclude: /node_modules/
       }]
     },
+    plugins: [
+      new webpack.BannerPlugin('#!/usr/bin/env node', { raw: true })
+    ],
     output: {
       filename: `${outputDir}/bin/${binFile}`
     },

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+'#!/usr/bin/env node'
 
 import { create } from './lagom-create'
 import { server } from './lagom-server'

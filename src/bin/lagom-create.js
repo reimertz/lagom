@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+'#!/usr/bin/env node'
 
 import fsp from 'fs-promise'
 import askForInput from './helpers/ask-for-input'

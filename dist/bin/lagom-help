@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -58,6 +59,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	'#!/usr/bin/env node';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
