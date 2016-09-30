@@ -2,13 +2,13 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
-
 const autoprefixer = require('autoprefixer')
 const path = require('path')
 
 const isProductionMode = ~process.argv.indexOf('-production')
 const binFiles = ['lagom', 'lagom-create', 'lagom-server', 'lagom-help']
 const outputDir = isProductionMode ? 'dist' : '.build'
+
 const commonOptions = {
   resolve: {
     extensions: ['', '.js', '.sass'],
