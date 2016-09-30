@@ -29,7 +29,7 @@ lagom deploy
 
 ## todo
 
-lagom deploy
-mobile support
-iterate on the scss backend
+- lagom deploy
+- mobile support
+- iterate on the scss backend
 
