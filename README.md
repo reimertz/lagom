@@ -20,8 +20,16 @@ cd <lagom project folder>
 lagom server
 ```
 
-### deploy presentation (work in progress)
+### deploy presentation (not working)
 ```
 lagom deploy
 > http://git.io/N2sk2l4
+```
+
+
+### todo
+```
+lagom deploy
+mobile support
+iterate on the scss backend
 ```
