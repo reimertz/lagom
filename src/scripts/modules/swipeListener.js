@@ -7,4 +7,5 @@ export const addSwipeListener = () => {
   mc.add( new Swipe({ direction: DIRECTION_HORIZONTAL, threshold: 0 }) )
   mc.on("swipeleft", nextSlide)
   mc.on("swiperight", previousSlide)
+
 }

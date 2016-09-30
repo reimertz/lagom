@@ -1,15 +1,17 @@
 html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+body {
   background: white;
   color: black;
-  display: flex;
   font-family: Menlo !important;
   font-size: 20px;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
   width: 100vw;
-  overflow: hidden;
-  flex-direction: column;
 }
 
 left {
