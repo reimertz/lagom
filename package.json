@@ -1,8 +1,11 @@
 {
   "name": "lagom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "simplistic slides",
   "main": "index.js",
+  "bin": {
+    "lagom": "./dist/bin/lagom"
+  },
   "scripts": {
     "dist": "webpack -production --progress",
     "build": "webpack",
