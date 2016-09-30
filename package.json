@@ -1,6 +1,6 @@
 {
   "name": "lagom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "simplistic slides",
   "main": "index.js",
   "scripts": {
