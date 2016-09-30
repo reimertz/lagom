@@ -1,20 +1,20 @@
 {
   "name": "lagom",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "simplistic slides",
   "main": "index.js",
   "bin": {
     "lagom": "./dist/bin/lagom"
   },
   "scripts": {
-    "dist": "webpack -production --progress",
+    "dist": "webpack -production --progress --optimize-minimize",
     "build": "webpack",
     "bin": "node .build/bin/lagom help",
     "watch": "webpack-dev-server --content-base .build/starter",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines" : {
-    "node" : ">=4.0.0"
+  "engines": {
+    "node": ">=4.0.0"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "babel-register": "^6.14.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "hammerjs": "^2.0.8",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.22.0",
     "postcss-loader": "^0.13.0",

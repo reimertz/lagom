@@ -19,6 +19,7 @@ import {
 
 import { renderCodeBlocks } from './modules/codeBlocks'
 import { checkHighlighting } from './modules/highlighting'
+import {Swipe, Manager, DIRECTION_HORIZONTAL} from 'hammerjs'
 
 const onKey = event => {
   const keyCode = (event || window.event).keyCode
@@ -29,7 +30,8 @@ const onKey = event => {
 }
 
 const initLagom = () => {
-  const initialSlide = getCurrentSlide() || 0;
+  const mc = new Manager(document.body)
+  const initialSlide = getCurrentSlide() || 0
 
   //;-; don't want to bring in promises just for this thing.
   checkIfIsRefreshedPresentationWindow(setSlide.bind(this, initialSlide))
@@ -38,6 +40,10 @@ const initLagom = () => {
   Array.prototype.forEach.call(slides, (slide, i, array) => {
     slide.id = i
   })
+
+  mc.add( new Swipe({ direction: DIRECTION_HORIZONTAL, threshold: 0 }) )
+  mc.on("swipeleft", nextSlide)
+  mc.on("swiperight", previousSlide)
 
   document.addEventListener('keydown', onKey)
   window.addEventListener('mouseup', checkHighlighting)
