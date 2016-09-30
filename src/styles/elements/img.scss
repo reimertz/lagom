@@ -1,0 +1,42 @@
+$max-width: 80vw;
+$width-small: 300px;
+$width-regular: 600px;
+$width-large: 800px;
+
+img {
+  height: auto;
+  min-height: $width-small;
+  max-width: $max-width;
+  width: $width-regular;
+  text-align: center;
+  //border: $width-regular/100 solid black;
+  max-height: 80vh;
+  object-fit: cover;
+  transition: 500ms;
+
+  small > & {
+    min-height: $width-small;
+    width: $width-small;
+    //border-width: $width-small/100;
+  }
+
+  big > & {
+    min-height: $width-small;
+    width: $width-large;
+    //border-width: $width-large/100;
+  }
+
+  big > big > & {
+    transform: translateZ(0);
+    //border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    z-index: -1;
+  }
+
+}

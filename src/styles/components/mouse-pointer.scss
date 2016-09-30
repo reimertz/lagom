@@ -1,0 +1,18 @@
+span[id="lagom-mousepointer"] {
+  position: fixed;
+  font-size: 2rem;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  left: 0;
+  line-height: 10px;
+  z-index: 3;
+}
+
+
+body[data-lagom-is-presentation-window="true"] {
+  span[id="lagom-mousepointer"] {
+    display: none;
+  }
+
+}

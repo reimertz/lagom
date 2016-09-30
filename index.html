@@ -1,0 +1,221 @@
+<title>lagom.js</title>
+<link rel=stylesheet href="dist/starter/styles/lagom.css">
+<header> ◩ | lagom.js </header>
+
+<section>
+  <center>
+    <h1>lagom.js<sup>beta</sup></h1>
+    <h2><span style="font-size: 10rem;line-height: 4rem;">◩</span></h2>
+    <p>a simplistic presentation generator</p>
+    <small>
+      <p>made by <a href="http://twitter.com/reimertz" target="_blank">@reimertz</a></p>
+    </small>
+  </center>
+</section>
+
+<section>
+  <p>
+    <i>lagom (pronounced [ˈlɑ̀ːɡɔm]) is a Swedish word meaning "just the right amount"</i>
+  </p>
+</section>
+
+
+<section>
+  <h2>npm install lagom -g --production</h2>
+  <p><small>--production to skip devDependencies</small></p>
+</section>
+
+<section>
+  <h2>a command-line interface</h2>
+  <code class="bash">
+reimertz at macbook in ~/git/lagom/
+$ lagom help
+
+lagom create    create a new presentation (default)
+lagom server    start live-reloading server
+lagom deploy    deploy presentation to a gist
+lagom help      show this help
+  </code>
+</section>
+
+<section>
+  <h2>a lagom architecture</h2>
+  <code class="bash">
+styles
+  - lagom.css
+scripts
+  - lagom.js
+index.html
+  </code>
+</section>
+
+<section>
+  <h2>a lagom markup</h2>
+<code>
+<title>lagom.js</title>
+<link rel=stylesheet href="styles/lagom.css">
+
+<header> ◩ | lagom.js</header>
+
+<section>
+  <h1>lagom.js</h1>
+  <big><h1>◩</h1></big>
+  <p>a simplistic presentation generator</p>
+</section>
+
+&lt;script src="scripts/lagom.js">&lt;/script>
+
+  </code>
+</section>
+
+<section>
+<h2>one section, one slide</h2>
+<code>
+<section></section>
+</code>
+</section>
+
+<section>
+<h2>elements you are used too</h2>
+<code>
+<h1></h1>
+<h2></h2>
+<h3></h3>
+<p></p>
+<ul>
+  <li></li>
+</ul>
+<img>
+</code>
+</section>
+
+<section>
+<h2>old-school modifiers</h2>
+<code>
+<big></big>
+<small></small>
+
+<left></left>
+<center></center>
+<right></right>
+</code>
+</section>
+
+<section>
+<h2>a &lt;small> image</h2>
+<code>
+<small>
+  <img src="tim-and-eric-mind-blown.gif">
+</small>
+</code>
+<small>
+  <img src="http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif">
+</small>
+</section>
+
+<section>
+<h2>a &lt;big> image</h2>
+<code>
+<big>
+  <img src="tim-and-eric-mind-blown.gif">
+</big>
+</code>
+<big>
+  <img src="http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif">
+</big>
+</section>
+
+<section>
+<h2>a &lt;big> &lt;big> image (fullscreen)</h2>
+<code>
+<section>
+  <h2>a &lt;big> &lt;big> image (fullscreen)</h2>
+  <big>
+    <big>
+      <img src="tim-and-eric-mind-blown.gif">
+    </big>
+  </big>
+</section>
+</code>
+<big>
+  <big>
+    <img src="http://www.reactiongifs.com/r/2013/10/tim-and-eric-mind-blown.gif">
+  </big>
+</big>
+</section>
+
+<section>
+<h2>code blocks</h2>
+<code>
+  <section>
+    <h2>code blocks</h2>
+    <code>
+      <section>
+        <h2>code blocks</h2>
+        <code>
+          <!-- insert meta joke here -->
+        </code>
+      </section>
+    </code>
+  </section>
+</code>
+</section>
+
+<section>
+  <h2>presentation mode</h2>
+  <small>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTloiOq2eL_QSfJ7fgpwrgJFfPjGtqOLtAt5FnzSvppp7vVz_dZ" alt="">
+  </small>
+  <p>press p to test</p>
+</section>
+
+<section>
+  <h2>windows are synced</h2>
+</section>
+
+<section>
+  <h2>you can see the next slide ➚</h2>
+  <small>
+    <p>(but only if you are in presentation mode)</p>
+  </small>
+
+</section>
+
+<section>
+  <h2>add notes to a slide</h2>
+  <code>
+    <section>
+      <h2>add notes to a slide</h2>
+      <!--
+        this is a note that is
+        only visible in presentation mode
+      -->
+    </section>
+  </code>
+  <!--
+    this is a note that is
+    only visible in presentation mode
+  -->
+</section>
+
+<section>
+  <h2>matched aspect ratios</h2>
+  <p>presentation view is locked to the width and height of the main view </p>
+</section>
+
+<section>
+  <h2>synced highlighting</h2>
+  <p>when you need to point something out</p>
+</section>
+
+<section>
+  <h2>synced mouse pointer ☝</h2>
+  <p><i>just because i can</i></p>
+</section>
+
+<section>
+  <h2>documentation</h2>
+  <h3><a href="https://github.com/reimertz/lagom">github.com/reimertz/lagom</a></h3>
+</section>
+
+<script src="dist/starter/scripts/lagom.js"></script>

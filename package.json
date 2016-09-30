@@ -1,0 +1,56 @@
+{
+  "name": "lagom",
+  "version": "0.0.1",
+  "description": "simplistic slides",
+  "main": "index.js",
+  "scripts": {
+    "dist": "webpack -production --progress",
+    "build": "webpack",
+    "bin": "node .build/bin/lagom help",
+    "watch": "webpack-dev-server --content-base .build/starter",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/reimertz/lagom.git"
+  },
+  "keywords": [
+    "slides",
+    "lagom",
+    "simplistic",
+    "presentation",
+    "javascript"
+  ],
+  "author": "Pierre Reimertz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reimertz/lagom/issues"
+  },
+  "homepage": "https://github.com/reimertz/lagom",
+  "dependencies": {
+    "ansi-escapes": "^1.4.0",
+    "chalk": "^1.1.3",
+    "fs-promise": "^0.5.0",
+    "live-server": "git://github.com/reimertz/live-server.git"
+  },
+  "devDependencies": {
+    "any-promise": "^1.3.0",
+    "autoprefixer": "^6.5.0",
+    "babel-cli": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.22.0",
+    "postcss-loader": "^0.13.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1",
+    "webpack-node-externals": "^1.4.3"
+  }
+}

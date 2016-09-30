@@ -1,0 +1,78 @@
+$h1-font-size: 3rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.75rem;
+$h4-font-size: 1.5rem;
+$p-font-size: $h4-font-size;
+
+html {
+  font-size: 100%;
+  transition: font-size 500ms;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-weight: 400;
+  background: white;
+  padding: 0.25rem 1rem;
+  text-align: center;
+}
+
+h1 { font-size: $h1-font-size; font-weight: 500; margin: $h1-font-size*0.25 auto;}
+h2 { font-size: $h2-font-size; margin: $h2-font-size*0.25 auto; }
+h3 { font-size: $h3-font-size; margin: $h3-font-size*0.25 auto; }
+h4 { font-size: $h4-font-size; margin: $h4-font-size*0.25 auto; }
+
+p, ul {
+  font-size: $p-font-size;
+  line-height: $p-font-size + 0.5;
+}
+
+pre {
+  text-align: left;
+}
+
+small {
+  h1 { font-size: $h1-font-size * 0.75; }
+  h2 { font-size: $h2-font-size * 0.75; }
+  h3 { font-size: $h3-font-size * 0.75; }
+  h4 { font-size: $h4-font-size * 0.75; }
+  p { font-size: $p-font-size * 0.75; }
+
+}
+
+big {
+  h1 { font-size: $h1-font-size * 1.25; }
+  h2 { font-size: $h2-font-size * 1.25; }
+  h3 { font-size: $h3-font-size * 1.25; }
+  h4 { font-size: $h4-font-size * 1.25; }
+  p { font-size: $p-font-size * 1.25; }
+}
+
+@media (max-width: 1400px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+@media (max-width: 1000px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 65%;
+  }
+}

@@ -1,0 +1,8 @@
+@for $i from 0 through 200 {
+  body[data-lagom-current-slide="#{$i}"] {
+
+    section[id="#{$i}"] {
+      opacity: 1;
+    }
+  }
+}

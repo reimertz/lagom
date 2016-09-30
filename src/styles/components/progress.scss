@@ -1,0 +1,23 @@
+$progress-height: 5px;
+
+body:after {
+  background: black;
+  content: '';
+  display: block;
+  height: $progress-height;
+  left: 0;
+  position: fixed;
+  top: 0;
+  transition: 500ms width;
+  width: 0%;
+}
+
+body[data-lagom-progress]:after {
+  width: 100%;
+}
+
+@for $i from 0 through 100 {
+  body[data-lagom-progress="#{$i}"]:after {
+    width: percentage($i/100);
+  }
+}
