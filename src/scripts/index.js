@@ -19,7 +19,8 @@ import {
 
 import { renderCodeBlocks } from './modules/codeBlocks'
 import { checkHighlighting } from './modules/highlighting'
-import {Swipe, Manager, DIRECTION_HORIZONTAL} from 'hammerjs'
+import { addSwipeListener } from './modules/swipeListener'
+import * as isMobile from 'ismobilejs'
 
 const onKey = event => {
   const keyCode = (event || window.event).keyCode
@@ -30,7 +31,7 @@ const onKey = event => {
 }
 
 const initLagom = () => {
-  const mc = new Manager(document.body)
+
   const initialSlide = getCurrentSlide() || 0
 
   //;-; don't want to bring in promises just for this thing.
@@ -41,9 +42,7 @@ const initLagom = () => {
     slide.id = i
   })
 
-  mc.add( new Swipe({ direction: DIRECTION_HORIZONTAL, threshold: 0 }) )
-  mc.on("swipeleft", nextSlide)
-  mc.on("swiperight", previousSlide)
+  if(isMobile.any) addSwipeListener()
 
   document.addEventListener('keydown', onKey)
   window.addEventListener('mouseup', checkHighlighting)
