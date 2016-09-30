@@ -318,7 +318,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	'#!/usr/bin/env node';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -518,7 +517,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	'#!/usr/bin/env node';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -545,8 +543,7 @@
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	'#!/usr/bin/env node';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -579,7 +576,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	'#!/usr/bin/env node';
 
 	var _lagomCreate = __webpack_require__(/*! ./lagom-create */ 7);
 
@@ -587,9 +583,9 @@
 
 	var _lagomHelp = __webpack_require__(/*! ./lagom-help */ 8);
 
-	if (process.argv.includes('create')) {
+	if (~process.argv.indexOf('create')) {
 	  (0, _lagomCreate.create)();
-	} else if (process.argv.includes('server')) {
+	} else if (~process.argv.indexOf('server')) {
 	  (0, _lagomServer.server)();
 	} else {
 	  (0, _lagomHelp.help)();

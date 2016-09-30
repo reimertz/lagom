@@ -1,6 +1,6 @@
 {
   "name": "lagom",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "simplistic slides",
   "main": "index.js",
   "bin": {
@@ -12,6 +12,9 @@
     "bin": "node .build/bin/lagom help",
     "watch": "webpack-dev-server --content-base .build/starter",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines" : {
+    "node" : ">=4.0.0"
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,11 @@
-'#!/usr/bin/env node'
-
 import { create } from './lagom-create'
 import { server } from './lagom-server'
 import { help } from './lagom-help'
 
-if (process.argv.includes('create')){
+if (~process.argv.indexOf('create')){
   create()
 }
-else if (process.argv.includes('server')){
+else if (~process.argv.indexOf('server')){
   server()
 }
 else {
