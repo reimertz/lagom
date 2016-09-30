@@ -4,12 +4,12 @@ import {
   addStorageEventListener
 } from './localStorage'
 
-let mousePointerEl;
+let mousePointerEl
 
 export const onExternalMousePointerMoved = mousePointer => {
   if (!mousePointer) return
-  mousePointerEl.style.left = mousePointer.x;
-  mousePointerEl.style.top = mousePointer.y;
+  mousePointerEl.style.left = `${mousePointer.x}px`
+  mousePointerEl.style.top = `${mousePointer.y}px`
 }
 
 export const onMouseMoved = event => {
