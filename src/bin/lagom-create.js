@@ -21,6 +21,11 @@ async function getInput() {
   }
 }
 
+async function checkIfFolderExists(folderName) {
+  return fsp.exists(`./${folderName}`)
+}
+
+
 async function moveStarterToFolder(folderName) {
   return fsp.copy(starterLocation,  `./${folderName}`)
 }
@@ -46,15 +51,19 @@ export async function create() {
   const folderName = title.replace(/\s+/g, '-')
 
   try {
+    const folderExists = await checkIfFolderExists(folderName)
+
+    if (folderExists) throw new Error('folder already exists.')
+
     await moveStarterToFolder(folderName)
     await generateIndex(folderName, title, homepage, twitter, github)
 
     process.stdout.write(chalk.green('◩  presentation: ') + 'generated\n')
-    process.stdout.write(chalk.green('◩          type: ') + `'cd ${title}; lagom server' `)
-    process.stdout.write(chalk.green('to start\n'))
+    process.stdout.write(chalk.green('◩          type: ') + chalk.bold(`cd ${folderName}; lagom server`))
+    process.stdout.write(chalk.green(' to start\n'))
   }
 
   catch(e) {
-    process.stdout.write(chalk.red('◩  something went wrong'))
+    process.stdout.write(chalk.red(`◩         ${e}\n`))
   }
 }
