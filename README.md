@@ -26,6 +26,19 @@ lagom deploy
 > http://git.io/N2sk2l4
 ```
 
+## development
+```
+git clone https://github.com/reimertz/lagom.git
+cd lagom
+npm install
+
+#then
+npm run bin <command> #to run lagom cli
+
+webpack -w # to auto-build everything on filechanges
+npm run bin server # to serve index.html in folder
+```
+
 
 ## todo
 
