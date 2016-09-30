@@ -30,6 +30,6 @@ lagom deploy
 ## todo
 
 - lagom deploy
-- mobile support
+- tests (!)
 - iterate on the scss backend
 
