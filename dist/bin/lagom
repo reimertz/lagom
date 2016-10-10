@@ -799,8 +799,8 @@
 	              'preserveComments': true
 	            };
 	            return _context2.abrupt('return', new _promise2.default(function (resolve, reject) {
-	              return new _inliner2.default(fileName, options, function (error, html) {
 
+	              return new _inliner2.default(fileName, options, function (error, html) {
 	                if (error) reject(error);else resolve(html);
 	              }).on('progress', printStatus);
 	            }));
@@ -870,7 +870,7 @@
 	            shortenedUrl = _context3.sent;
 
 
-	            process.stdout.write(_chalk2.default.green('\u25E9         deployed: http://lagom.hook.io/?c=' + code + '\n'));
+	            process.stdout.write(_chalk2.default.green('\u25E9         deployed: http://lagom.hook.io/?c=' + shortenedUrl + '\n'));
 	            _context3.next = 25;
 	            break;
 

@@ -49,7 +49,7 @@ export async function deploy(fileName = 'index.html') {
 
     shortenedUrl = await urlShortener(rawGistURL)
 
-    process.stdout.write(chalk.green(`◩         deployed: http://lagom.hook.io/?c=${code}\n`))
+    process.stdout.write(chalk.green(`◩         deployed: http://lagom.hook.io/?c=${shortenedUrl}\n`))
   }
 
   catch(e) {
