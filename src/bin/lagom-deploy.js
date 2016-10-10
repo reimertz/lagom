@@ -13,7 +13,7 @@ async function getInlinedFile() {
     'compressCSS': false,
     'preserveComments': true,
   }
-  return new Promise(( resolve, reject) => {
+  return new Promise(( resolve, reject ) => {
     return new Inliner('./index.html', options, (error, html) => {
       if (error) return reject(error)
       else return resolve(html)
