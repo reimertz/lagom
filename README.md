@@ -1,5 +1,7 @@
-# lagom
-lagom: a simplistic presentation generator
+◩ lagom
+====
+
+> simplistic presentation generator
 
 ## installation
 
