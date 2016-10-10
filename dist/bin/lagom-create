@@ -110,10 +110,15 @@
 
 	exports.default = askForInput;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 2);
 
-	var ansi = __webpack_require__(/*! ansi-escapes */ 2);
-	var chalk = __webpack_require__(/*! chalk */ 1);
+	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
+
+	var _chalk = __webpack_require__(/*! chalk */ 1);
+
+	var _chalk2 = _interopRequireDefault(_chalk);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//Cred to zeit.co and their email-input thingy. <3
 	function askForInput() {
@@ -142,7 +147,7 @@
 	    var isRaw = process.stdin.isRaw;
 	    var isPaused = process.stdin.isPaused();
 
-	    process.stdout.write(chalk.green(question));
+	    process.stdout.write(_chalk2.default.green(question));
 	    process.stdin.setRawMode(true);
 	    process.stdin.resume();
 
@@ -178,9 +183,9 @@
 	        val = val.substr(0, val.length + caretOffset) + add + val.substr(val.length + caretOffset);
 	      }
 
-	      process.stdout.write(ansi.eraseLines(1) + chalk.green(question) + val);
+	      process.stdout.write(_ansiEscapes2.default.eraseLines(1) + _chalk2.default.green(question) + val);
 	      if (caretOffset) {
-	        process.stdout.write(ansi.cursorBackward(Math.abs(caretOffset)));
+	        process.stdout.write(_ansiEscapes2.default.cursorBackward(Math.abs(caretOffset)));
 	      }
 	    };
 

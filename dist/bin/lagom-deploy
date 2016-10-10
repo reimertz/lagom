@@ -96,7 +96,7 @@
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 7);
+	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 8);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -214,7 +214,7 @@
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
-	var _formData = __webpack_require__(/*! form-data */ 10);
+	var _formData = __webpack_require__(/*! form-data */ 11);
 
 	var _formData2 = _interopRequireDefault(_formData);
 
@@ -236,24 +236,45 @@
 	});
 	exports.deploy = undefined;
 
+	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 9);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
 	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
-
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 8);
-
-	var _promise2 = _interopRequireDefault(_promise);
 
 	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-	var getInlinedFile = function () {
-	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-	    var options;
+	var printStatus = function () {
+	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(status) {
 	    return _regenerator2.default.wrap(function _callee$(_context) {
 	      while (1) {
 	        switch (_context.prev = _context.next) {
+	          case 0:
+	            process.stdout.write('\u25E9         status: ' + status + '\n');
+
+	          case 1:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee, this);
+	  }));
+
+	  return function printStatus(_x) {
+	    return _ref.apply(this, arguments);
+	  };
+	}();
+
+	var getInlinedFile = function () {
+	  var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(fileName) {
+	    var options;
+	    return _regenerator2.default.wrap(function _callee2$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
 	          case 0:
 	            options = {
 	              'images': false,
@@ -262,74 +283,102 @@
 	              'compressCSS': false,
 	              'preserveComments': true
 	            };
-	            return _context.abrupt('return', new _promise2.default(function (resolve, reject) {
-	              return new Inliner('./index.html', options, function (error, html) {
-	                if (error) return reject(error);else return resolve(html);
-	              });
+	            return _context2.abrupt('return', new _promise2.default(function (resolve, reject) {
+	              return new _inliner2.default(fileName, options, function (error, html) {
+
+	                if (error) reject(error);else resolve(html);
+	              }).on('progress', printStatus);
 	            }));
 
 	          case 2:
 	          case 'end':
-	            return _context.stop();
-	        }
-	      }
-	    }, _callee, this);
-	  }));
-
-	  return function getInlinedFile() {
-	    return _ref.apply(this, arguments);
-	  };
-	}();
-
-	var deploy = exports.deploy = function () {
-	  var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
-	    var inlinedHTML, rawGistURL, code;
-	    return _regenerator2.default.wrap(function _callee2$(_context2) {
-	      while (1) {
-	        switch (_context2.prev = _context2.next) {
-	          case 0:
-	            _context2.prev = 0;
-	            _context2.next = 3;
-	            return getInlinedFile();
-
-	          case 3:
-	            inlinedHTML = _context2.sent;
-	            _context2.next = 6;
-	            return (0, _createGist.createGist)(inlinedHTML);
-
-	          case 6:
-	            rawGistURL = _context2.sent;
-	            _context2.next = 9;
-	            return (0, _urlShortener.urlShortener)(rawGistURL);
-
-	          case 9:
-	            code = _context2.sent;
-
-
-	            console.log('deployed to http://lagom.hook.io/?c=' + code);
-	            _context2.next = 16;
-	            break;
-
-	          case 13:
-	            _context2.prev = 13;
-	            _context2.t0 = _context2['catch'](0);
-
-	            process.stdout.write(_chalk2.default.red('\u25E9         ' + _context2.t0 + '\n'));
-
-	          case 16:
-	          case 'end':
 	            return _context2.stop();
 	        }
 	      }
-	    }, _callee2, this, [[0, 13]]);
+	    }, _callee2, this);
 	  }));
 
-	  return function deploy() {
+	  return function getInlinedFile(_x2) {
 	    return _ref2.apply(this, arguments);
 	  };
 	}();
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 11);
+	var deploy = exports.deploy = function () {
+	  var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
+	    var fileName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'index.html';
+	    var fileExists, inlinedHTML, rawGistURL, shortenedUrl;
+	    return _regenerator2.default.wrap(function _callee3$(_context3) {
+	      while (1) {
+	        switch (_context3.prev = _context3.next) {
+	          case 0:
+	            fileExists = void 0, inlinedHTML = void 0, rawGistURL = void 0, shortenedUrl = void 0;
+
+	            process.stdout.write(_chalk2.default.green('\u25E9         lagom: deploy\n'));
+
+	            _context3.prev = 2;
+	            _context3.next = 5;
+	            return _fsPromise2.default.exists('./' + fileName);
+
+	          case 5:
+	            fileExists = _context3.sent;
+
+	            if (fileExists) {
+	              _context3.next = 8;
+	              break;
+	            }
+
+	            throw new Error(fileName + ' doesn\'t exist');
+
+	          case 8:
+	            _context3.next = 10;
+	            return getInlinedFile('./' + fileName);
+
+	          case 10:
+	            inlinedHTML = _context3.sent;
+
+
+	            printStatus('creating gist');
+
+	            _context3.next = 14;
+	            return (0, _createGist.createGist)(inlinedHTML);
+
+	          case 14:
+	            rawGistURL = _context3.sent;
+
+
+	            printStatus('shortening url');
+
+	            _context3.next = 18;
+	            return (0, _urlShortener.urlShortener)(rawGistURL);
+
+	          case 18:
+	            shortenedUrl = _context3.sent;
+
+
+	            process.stdout.write(_chalk2.default.green('\u25E9         deployed: http://lagom.hook.io/?c=' + code + '\n'));
+	            _context3.next = 25;
+	            break;
+
+	          case 22:
+	            _context3.prev = 22;
+	            _context3.t0 = _context3['catch'](2);
+
+	            process.stdout.write(_chalk2.default.red('\u25E9         error: ' + _context3.t0.message + '\n'));
+
+	          case 25:
+	          case 'end':
+	            return _context3.stop();
+	        }
+	      }
+	    }, _callee3, this, [[2, 22]]);
+	  }));
+
+	  return function deploy(_x3) {
+	    return _ref3.apply(this, arguments);
+	  };
+	}();
+
+	var _fsPromise = __webpack_require__(/*! fs-promise */ 12);
 
 	var _fsPromise2 = _interopRequireDefault(_fsPromise);
 
@@ -337,16 +386,31 @@
 
 	var _urlShortener = __webpack_require__(/*! ./helpers/url-shortener */ 5);
 
-	var _chalk = __webpack_require__(/*! chalk */ 9);
+	var _chalk = __webpack_require__(/*! chalk */ 10);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 7);
 
-	var Inliner = __webpack_require__(/*! inliner */ 12);
+	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
+
+	var _inliner = __webpack_require__(/*! inliner */ 13);
+
+	var _inliner2 = _interopRequireDefault(_inliner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
 /* 7 */
+/*!*******************************!*\
+  !*** external "ansi-escapes" ***!
+  \*******************************/
+/***/ function(module, exports) {
+
+	module.exports = require("ansi-escapes");
+
+/***/ },
+/* 8 */
 /*!*******************************************************!*\
   !*** external "babel-runtime/core-js/json/stringify" ***!
   \*******************************************************/
@@ -355,7 +419,7 @@
 	module.exports = require("babel-runtime/core-js/json/stringify");
 
 /***/ },
-/* 8 */
+/* 9 */
 /*!************************************************!*\
   !*** external "babel-runtime/core-js/promise" ***!
   \************************************************/
@@ -364,7 +428,7 @@
 	module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
-/* 9 */
+/* 10 */
 /*!************************!*\
   !*** external "chalk" ***!
   \************************/
@@ -373,7 +437,7 @@
 	module.exports = require("chalk");
 
 /***/ },
-/* 10 */
+/* 11 */
 /*!****************************!*\
   !*** external "form-data" ***!
   \****************************/
@@ -382,7 +446,7 @@
 	module.exports = require("form-data");
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!*****************************!*\
   !*** external "fs-promise" ***!
   \*****************************/
@@ -391,7 +455,7 @@
 	module.exports = require("fs-promise");
 
 /***/ },
-/* 12 */
+/* 13 */
 /*!**************************!*\
   !*** external "inliner" ***!
   \**************************/

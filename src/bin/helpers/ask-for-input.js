@@ -1,5 +1,5 @@
-const ansi = require('ansi-escapes')
-const chalk = require('chalk')
+import ansi from 'ansi-escapes'
+import chalk from 'chalk'
 
 //Cred to zeit.co and their email-input thingy. <3
 export default function askForInput({

@@ -11,7 +11,9 @@ else if (~process.argv.indexOf('server')){
 }
 
 else if (~process.argv.indexOf('deploy')){
-  deploy()
+  const possibleFileName = process.argv[process.argv.indexOf('deploy') + 1]
+
+  deploy(possibleFileName)
 }
 else {
   help()
