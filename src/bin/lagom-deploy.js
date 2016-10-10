@@ -27,7 +27,7 @@ export async function deploy() {
     const rawGistURL = await createGist(inlinedHTML)
     const code = await urlShortener(rawGistURL)
 
-    console.log(`deployed to http://git.io/${code}`)
+    console.log(`deployed to http://lagom.hook.io/?c=${code}`)
   }
 
   catch(e) {
