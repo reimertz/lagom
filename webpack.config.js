@@ -6,7 +6,10 @@ const autoprefixer = require('autoprefixer')
 const path = require('path')
 
 const isProductionMode = ~process.argv.indexOf('-production')
-const binFiles = ['lagom', 'lagom-create', 'lagom-server', 'lagom-help']
+const commandFiles = ['', '-create', '-server', '-deploy', '-help'].map( command => {
+  return `lagom${command}`;
+})
+
 const outputDir = isProductionMode ? 'dist' : '.build'
 
 const commonOptions = {
@@ -16,9 +19,9 @@ const commonOptions = {
   }
 }
 
-const binConfigs = binFiles.map(binFile => {
+const binConfigs = commandFiles.map(commandFile => {
     return Object.assign({}, commonOptions, {
-    entry: [`./src/bin/${binFile}.js`],
+    entry: [`./src/bin/${commandFile}.js`],
     target: 'node',
     node: {
       __dirname: false,
@@ -35,7 +38,7 @@ const binConfigs = binFiles.map(binFile => {
       new webpack.BannerPlugin('#!/usr/bin/env node', { raw: true })
     ],
     output: {
-      filename: `${outputDir}/bin/${binFile}`
+      filename: `${outputDir}/bin/${commandFile}`
     },
     externals: [ nodeExternals() ]
   })

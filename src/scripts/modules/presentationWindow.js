@@ -66,6 +66,8 @@ export const checkIfIsRefreshedPresentationWindow = (done) => {
   }
 }
 
+window._lagom_setPresentation = setPresentationWindow;
+
 const onResize = () => {
   presentationWindow.resizeTo(window.innerWidth, window.innerHeight)
 }

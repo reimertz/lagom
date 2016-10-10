@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script>
+  document.currentScript.parentNode.removeChild(document.currentScript)
+  fetch(window.location.search.substring(1))
+    .then(response => {
+       return response.text()
+    })
+    .then(body => {
+      document.body.innerHTML = body;
+      [].forEach.call( document.scripts, script => {
+        eval(script.innerText)
+      })
+    })
+</script>
