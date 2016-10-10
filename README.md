@@ -20,10 +20,10 @@ cd <lagom project folder>
 lagom server
 ```
 
-### deploy presentation (not working)
+### deploy presentation
 ```
 lagom deploy
-> http://git.io/N2sk2l4
+> http://lagom.hook.io?c=<code>
 ```
 
 ## development
@@ -39,10 +39,8 @@ webpack -w # to auto-build everything on filechanges
 npm run bin server # to serve index.html in folder
 ```
 
-
 ## todo
 
-- lagom deploy
 - tests (!)
 - iterate on the scss backend
 
