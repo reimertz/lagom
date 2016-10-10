@@ -34,13 +34,19 @@ const initLagom = () => {
 
   const initialSlide = getCurrentSlide() || 0
 
-  //;-; don't want to bring in promises just for this thing.
-  checkIfIsRefreshedPresentationWindow(setSlide.bind(this, initialSlide))
-  renderCodeBlocks()
+
 
   Array.prototype.forEach.call(slides, (slide, i, array) => {
     slide.id = i
   })
+
+  //;-; don't want to bring in promises just for this thing.
+  checkIfIsRefreshedPresentationWindow(() => {
+    setSlide(initialSlide)
+    renderCodeBlocks()
+  })
+
+
 
   if(isMobile.any) addSwipeListener()
 
