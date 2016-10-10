@@ -1,0 +1,404 @@
+#!/usr/bin/env node
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/*!******************!*\
+  !*** multi main ***!
+  \******************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./src/bin/lagom-deploy.js */6);
+
+
+/***/ },
+/* 1 */
+/*!*********************************************************!*\
+  !*** external "babel-runtime/helpers/asyncToGenerator" ***!
+  \*********************************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/helpers/asyncToGenerator");
+
+/***/ },
+/* 2 */
+/*!********************************************!*\
+  !*** external "babel-runtime/regenerator" ***!
+  \********************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/regenerator");
+
+/***/ },
+/* 3 */
+/*!*****************************!*\
+  !*** external "node-fetch" ***!
+  \*****************************/
+/***/ function(module, exports) {
+
+	module.exports = require("node-fetch");
+
+/***/ },
+/* 4 */
+/*!****************************************!*\
+  !*** ./src/bin/helpers/create-gist.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createGist = undefined;
+
+	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
+
+	var _regenerator2 = _interopRequireDefault(_regenerator);
+
+	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 7);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
+
+	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var createGist = exports.createGist = function () {
+	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(indexFile) {
+	    var body;
+	    return _regenerator2.default.wrap(function _callee$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            body = {
+	              description: 'a lagom.js presentation',
+	              public: true,
+	              files: {
+	                'lagom.html': {
+	                  content: indexFile
+	                }
+	              }
+	            };
+	            return _context.abrupt('return', (0, _nodeFetch2.default)(GIST_URL, {
+	              headers: {
+	                'User-Agent': 'lagom.js'
+	              },
+	              method: 'post',
+	              body: (0, _stringify2.default)(body)
+	            }).then(function (response) {
+	              return response.json();
+	            }).then(function (json) {
+	              var htmlFile = json.files['lagom.html'];
+	              var rawUrl = htmlFile.raw_url;
+
+	              return rawUrl;
+	            }));
+
+	          case 2:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee, this);
+	  }));
+
+	  return function createGist(_x) {
+	    return _ref.apply(this, arguments);
+	  };
+	}();
+
+	var _nodeFetch = __webpack_require__(/*! node-fetch */ 3);
+
+	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var GIST_URL = 'https://api.github.com/gists';
+
+/***/ },
+/* 5 */
+/*!******************************************!*\
+  !*** ./src/bin/helpers/url-shortener.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.urlShortener = undefined;
+
+	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
+
+	var _regenerator2 = _interopRequireDefault(_regenerator);
+
+	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
+
+	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var urlShortener = exports.urlShortener = function () {
+	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(gistUrl) {
+	    var url, form;
+	    return _regenerator2.default.wrap(function _callee$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            url = RENDERER + '?' + gistUrl;
+	            form = new _formData2.default();
+
+	            form.append('url', url);
+
+	            return _context.abrupt('return', (0, _nodeFetch2.default)(GIT_IO_URL, {
+	              method: 'post',
+	              body: form
+	            }).then(function (response) {
+	              return response.text();
+	            }));
+
+	          case 4:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee, this);
+	  }));
+
+	  return function urlShortener(_x) {
+	    return _ref.apply(this, arguments);
+	  };
+	}();
+
+	var _nodeFetch = __webpack_require__(/*! node-fetch */ 3);
+
+	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+
+	var _formData = __webpack_require__(/*! form-data */ 10);
+
+	var _formData2 = _interopRequireDefault(_formData);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var GIT_IO_URL = 'https://git.io/create';
+	var RENDERER = 'https://reimertz.github.io/lagom/renderer.html';
+
+/***/ },
+/* 6 */
+/*!*********************************!*\
+  !*** ./src/bin/lagom-deploy.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.deploy = undefined;
+
+	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
+
+	var _regenerator2 = _interopRequireDefault(_regenerator);
+
+	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 8);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
+	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
+
+	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var getInlinedFile = function () {
+	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+	    var options;
+	    return _regenerator2.default.wrap(function _callee$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            options = {
+	              'images': false,
+	              'compressJS': false,
+	              'collapseWhitespace': false,
+	              'compressCSS': false,
+	              'preserveComments': true
+	            };
+	            return _context.abrupt('return', new _promise2.default(function (resolve, reject) {
+	              return new Inliner('./index.html', options, function (error, html) {
+	                if (error) return reject(error);else return resolve(html);
+	              });
+	            }));
+
+	          case 2:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee, this);
+	  }));
+
+	  return function getInlinedFile() {
+	    return _ref.apply(this, arguments);
+	  };
+	}();
+
+	var deploy = exports.deploy = function () {
+	  var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+	    var inlinedHTML, rawGistURL, code;
+	    return _regenerator2.default.wrap(function _callee2$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
+	          case 0:
+	            _context2.prev = 0;
+	            _context2.next = 3;
+	            return getInlinedFile();
+
+	          case 3:
+	            inlinedHTML = _context2.sent;
+	            _context2.next = 6;
+	            return (0, _createGist.createGist)(inlinedHTML);
+
+	          case 6:
+	            rawGistURL = _context2.sent;
+	            _context2.next = 9;
+	            return (0, _urlShortener.urlShortener)(rawGistURL);
+
+	          case 9:
+	            code = _context2.sent;
+
+
+	            console.log('deployed to http://git.io/' + code);
+	            _context2.next = 16;
+	            break;
+
+	          case 13:
+	            _context2.prev = 13;
+	            _context2.t0 = _context2['catch'](0);
+
+	            process.stdout.write(_chalk2.default.red('\u25E9         ' + _context2.t0 + '\n'));
+
+	          case 16:
+	          case 'end':
+	            return _context2.stop();
+	        }
+	      }
+	    }, _callee2, this, [[0, 13]]);
+	  }));
+
+	  return function deploy() {
+	    return _ref2.apply(this, arguments);
+	  };
+	}();
+
+	var _fsPromise = __webpack_require__(/*! fs-promise */ 11);
+
+	var _fsPromise2 = _interopRequireDefault(_fsPromise);
+
+	var _createGist = __webpack_require__(/*! ./helpers/create-gist */ 4);
+
+	var _urlShortener = __webpack_require__(/*! ./helpers/url-shortener */ 5);
+
+	var _chalk = __webpack_require__(/*! chalk */ 9);
+
+	var _chalk2 = _interopRequireDefault(_chalk);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Inliner = __webpack_require__(/*! inliner */ 12);
+
+/***/ },
+/* 7 */
+/*!*******************************************************!*\
+  !*** external "babel-runtime/core-js/json/stringify" ***!
+  \*******************************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/core-js/json/stringify");
+
+/***/ },
+/* 8 */
+/*!************************************************!*\
+  !*** external "babel-runtime/core-js/promise" ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/core-js/promise");
+
+/***/ },
+/* 9 */
+/*!************************!*\
+  !*** external "chalk" ***!
+  \************************/
+/***/ function(module, exports) {
+
+	module.exports = require("chalk");
+
+/***/ },
+/* 10 */
+/*!****************************!*\
+  !*** external "form-data" ***!
+  \****************************/
+/***/ function(module, exports) {
+
+	module.exports = require("form-data");
+
+/***/ },
+/* 11 */
+/*!*****************************!*\
+  !*** external "fs-promise" ***!
+  \*****************************/
+/***/ function(module, exports) {
+
+	module.exports = require("fs-promise");
+
+/***/ },
+/* 12 */
+/*!**************************!*\
+  !*** external "inliner" ***!
+  \**************************/
+/***/ function(module, exports) {
+
+	module.exports = require("inliner");
+
+/***/ }
+/******/ ]);

@@ -6,8 +6,15 @@ var Inliner = require('inliner');
 
 
 async function getInlinedFile() {
+  const options = {
+    'images': false,
+    'compressJS': false,
+    'collapseWhitespace': false,
+    'compressCSS': false,
+    'preserveComments': true,
+  }
   return new Promise(( resolve, reject) => {
-    return new Inliner('./index.html', function (error, html) {
+    return new Inliner('./index.html', options, (error, html) => {
       if (error) return reject(error)
       else return resolve(html)
     })

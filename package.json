@@ -41,7 +41,7 @@
     "fs-promise": "^0.5.0",
     "live-server": "git://github.com/reimertz/live-server.git",
     "mustache": "^2.2.1",
-    "inliner": "^1.9.5",
+    "inliner": "git://github.com/reimertz/inliner.git",
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {

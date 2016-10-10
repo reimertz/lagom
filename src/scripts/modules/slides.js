@@ -4,7 +4,7 @@ import {
   addStorageEventListener
 } from './localStorage'
 
-import { checkForSlideComment, } from './comments'
+import { checkForSlideComment } from './comments'
 
 export const slides = document.querySelectorAll('body > section')
 export const nrOfSlides = slides.length - 1
@@ -37,7 +37,7 @@ export const setSlide = id => {
   }
   else {
     if (window.name === 'lagom_presentation_window') {
-      checkForSlideComment(id)
+      //checkForSlideComment(id)
     }
     updateViews(id)
     persistToLocalstorage('current-slide', id)
