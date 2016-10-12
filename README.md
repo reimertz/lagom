@@ -9,7 +9,10 @@
 
 
 ## installation
-
+```
+yarn global lagom #much faster
+```
+or
 ```
 npm install lagom -g --production
 ```
