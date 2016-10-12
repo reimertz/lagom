@@ -1,16 +1,19 @@
 {
   "name": "lagom",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "simplistic slides",
   "main": "index.js",
   "bin": {
     "lagom": "./dist/bin/lagom"
   },
+  "files": [
+    "./dist"
+  ],
   "scripts": {
     "dist": "webpack -production --progress --optimize-minimize",
     "build": "webpack",
-    "bin": "node .build/bin/lagom help",
-    "watch": "webpack-dev-server --content-base .build/starter",
+    "bin": "node ./.build/bin/lagom",
+    "watch": "webpack-dev-server --content-base ./.build/starter",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
