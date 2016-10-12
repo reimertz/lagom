@@ -23,8 +23,25 @@ const getElementFromPath = (path) => {
   }, document)
 }
 
+const onHighlighting = (persistedSelection) => {
+  if (!persistedSelection) return
 
-export const checkHighlighting = event => {
+  const selection = window.getSelection()
+  const range = document.createRange();
+  const startNode = getElementFromPath(persistedSelection.start.node)
+  const endNode = getElementFromPath(persistedSelection.end.node)
+
+  try {
+    range.setStart(startNode.firstChild, persistedSelection.start.offset)
+    range.setEnd(endNode.firstChild, persistedSelection.end.offset)
+    selection.removeAllRanges()
+    selection.addRange(range)
+  } catch(e) {
+    selection.removeAllRanges()
+  }
+}
+
+export const checkHighlighting = () => {
   const selection = window.getSelection()
   let highlightObject, range
 
@@ -37,11 +54,11 @@ export const checkHighlighting = event => {
 
       highlightObject = {
         start: {
-          node: getElementPath(selection.anchorNode.parentNode),
+          node: startNode,
           offset: selection.anchorOffset
         },
         end: {
-          node: getElementPath(selection.focusNode.parentNode),
+          node: endNode,
           offset: selection.focusOffset
         }
       }
@@ -63,24 +80,6 @@ export const checkHighlighting = event => {
   }
 }
 
-const onHighlighting = persistedSelection => {
-  if (!persistedSelection) return
-
-  const selection = window.getSelection()
-  const range = document.createRange();
-  const startNode = getElementFromPath(persistedSelection.start.node)
-  const endNode = getElementFromPath(persistedSelection.end.node)
-
-  try {
-    range.setStart(startNode.firstChild, persistedSelection.start.offset)
-    range.setEnd(endNode.firstChild, persistedSelection.end.offset)
-    selection.removeAllRanges()
-    selection.addRange(range)
-  } catch(e) {
-    selection.removeAllRanges()
-  }
-
-}
 
 addStorageEventListener('highlight', onHighlighting)
 setTimeout(() => {

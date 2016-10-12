@@ -1,4 +1,4 @@
-import hljs from '../vendor/highlight'
+import hljs from 'highlight.js'
 
 export const renderCodeBlocks = () => {
   const codes = document.getElementsByTagName('code')
@@ -7,4 +7,5 @@ export const renderCodeBlocks = () => {
     code.innerHTML = code.innerHTML.replace(/</g, '&lt;')
     hljs.highlightBlock(code)
   })
+
 }

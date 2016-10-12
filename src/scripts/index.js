@@ -1,8 +1,4 @@
-import {
-  persistToLocalstorage,
-  getFromLocalStorage,
-  addStorageEventListener
-} from './modules/localStorage'
+import { addStorageEventListener } from './modules/localStorage'
 
 import {
   slides,
@@ -34,9 +30,7 @@ const initLagom = () => {
 
   const initialSlide = getCurrentSlide() || 0
 
-
-
-  Array.prototype.forEach.call(slides, (slide, i, array) => {
+  Array.prototype.forEach.call(slides, (slide, i) => {
     slide.id = i
   })
 
@@ -45,8 +39,6 @@ const initLagom = () => {
     setSlide(initialSlide)
     renderCodeBlocks()
   })
-
-
 
   if(isMobile.any) addSwipeListener()
 

@@ -5,7 +5,7 @@ export const persistToLocalstorage = (key, val) => {
   localStorage.setItem(`${PREFIX}${key}`, JSON.stringify(val))
 }
 
-export const getFromLocalStorage = key => {
+export const getFromLocalStorage = (key) => {
   return JSON.parse(localStorage.getItem(`${PREFIX}${key}`))
 }
 
