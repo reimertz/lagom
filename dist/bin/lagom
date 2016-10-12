@@ -43,13 +43,32 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!******************!*\
-  !*** multi main ***!
-  \******************/
+/*!**************************!*\
+  !*** ./src/bin/lagom.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./src/bin/lagom.js */17);
+	'use strict';
 
+	var _lagomCreate = __webpack_require__(/*! ./lagom-create */ 10);
+
+	var _lagomServer = __webpack_require__(/*! ./lagom-server */ 13);
+
+	var _lagomDeploy = __webpack_require__(/*! ./lagom-deploy */ 11);
+
+	var _lagomHelp = __webpack_require__(/*! ./lagom-help */ 12);
+
+	if (~process.argv.indexOf('create')) {
+	  (0, _lagomCreate.create)();
+	} else if (~process.argv.indexOf('server')) {
+	  (0, _lagomServer.server)();
+	} else if (~process.argv.indexOf('deploy')) {
+	  var possibleFileName = process.argv[process.argv.indexOf('deploy') + 1];
+
+	  (0, _lagomDeploy.deploy)(possibleFileName);
+	} else {
+	  (0, _lagomHelp.help)();
+	}
 
 /***/ },
 /* 1 */
@@ -80,15 +99,6 @@
 
 /***/ },
 /* 4 */
-/*!*******************************!*\
-  !*** external "ansi-escapes" ***!
-  \*******************************/
-/***/ function(module, exports) {
-
-	module.exports = require("ansi-escapes");
-
-/***/ },
-/* 5 */
 /*!************************************************!*\
   !*** external "babel-runtime/core-js/promise" ***!
   \************************************************/
@@ -97,16 +107,7 @@
 	module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
-/* 6 */
-/*!********************************************!*\
-  !*** external "babel-runtime/core-js/set" ***!
-  \********************************************/
-/***/ function(module, exports) {
-
-	module.exports = require("babel-runtime/core-js/set");
-
-/***/ },
-/* 7 */
+/* 5 */
 /*!*****************************!*\
   !*** external "fs-promise" ***!
   \*****************************/
@@ -115,7 +116,7 @@
 	module.exports = require("fs-promise");
 
 /***/ },
-/* 8 */
+/* 6 */
 /*!*****************************!*\
   !*** external "node-fetch" ***!
   \*****************************/
@@ -124,7 +125,7 @@
 	module.exports = require("node-fetch");
 
 /***/ },
-/* 9 */
+/* 7 */
 /*!******************************************!*\
   !*** ./src/bin/helpers/ask-for-input.js ***!
   \******************************************/
@@ -136,17 +137,17 @@
 	  value: true
 	});
 
-	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 6);
+	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 16);
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 5);
+	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 4);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
 	exports.default = askForInput;
 
-	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 4);
+	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 14);
 
 	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
 
@@ -166,29 +167,19 @@
 	  var appendNewline = _ref$appendNewline === undefined ? true : _ref$appendNewline;
 	  var _ref$forceLowerCase = _ref.forceLowerCase;
 	  var forceLowerCase = _ref$forceLowerCase === undefined ? true : _ref$forceLowerCase;
-	  var _ref$suggestionColor = _ref.suggestionColor;
-	  var suggestionColor = _ref$suggestionColor === undefined ? 'gray' : _ref$suggestionColor;
-	  var _ref$autoCompleteChar = _ref.autoCompleteChars;
-	  var autoCompleteChars = _ref$autoCompleteChar === undefined ? new _set2.default(['\t' /* tab */
-	  , '\r' /* return */
-	  , '\x1B[C' /* right arrow */
-	  , ' ' /* spacebar */
-	  ]) : _ref$autoCompleteChar;
 	  var _ref$resolveChars = _ref.resolveChars;
 	  var resolveChars = _ref$resolveChars === undefined ? new _set2.default(['\r']) : _ref$resolveChars;
 	  var _ref$abortChars = _ref.abortChars;
 	  var abortChars = _ref$abortChars === undefined ? new _set2.default(['\x03']) : _ref$abortChars;
 
 	  return new _promise2.default(function (resolve, reject) {
-	    var isRaw = process.stdin.isRaw;
-	    var isPaused = process.stdin.isPaused();
+	    var isRaw = process.stdin.se;
 
 	    process.stdout.write(_chalk2.default.green(question));
 	    process.stdin.setRawMode(true);
 	    process.stdin.resume();
 
 	    var val = '';
-	    var suggestion = '';
 	    var caretOffset = 0;
 
 	    var ondata = function ondata(v) {
@@ -238,121 +229,7 @@
 	}
 
 /***/ },
-/* 10 */
-/*!**********************************************!*\
-  !*** ./src/bin/helpers/ask-for-selection.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 6);
-
-	var _set2 = _interopRequireDefault(_set);
-
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 5);
-
-	var _promise2 = _interopRequireDefault(_promise);
-
-	exports.default = askForInput;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ansi = __webpack_require__(/*! ansi-escapes */ 4);
-	var chalk = __webpack_require__(/*! chalk */ 1);
-
-	//Cred to zeit.co and their email-input thingy. <3
-	function askForInput() {
-	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-	  var _ref$question = _ref.question;
-	  var question = _ref$question === undefined ? '> Enter your email: ' : _ref$question;
-	  var _ref$options = _ref.options;
-	  var options = _ref$options === undefined ? ['yes', 'no'] : _ref$options;
-	  var _ref$appendNewline = _ref.appendNewline;
-	  var appendNewline = _ref$appendNewline === undefined ? true : _ref$appendNewline;
-	  var _ref$forceLowerCase = _ref.forceLowerCase;
-	  var forceLowerCase = _ref$forceLowerCase === undefined ? true : _ref$forceLowerCase;
-	  var _ref$suggestionColor = _ref.suggestionColor;
-	  var suggestionColor = _ref$suggestionColor === undefined ? 'gray' : _ref$suggestionColor;
-	  var _ref$autoCompleteChar = _ref.autoCompleteChars;
-	  var autoCompleteChars = _ref$autoCompleteChar === undefined ? new _set2.default(['\t' /* tab */
-	  , '\r' /* return */
-	  , '\x1B[C' /* right arrow */
-	  , ' ' /* spacebar */
-	  ]) : _ref$autoCompleteChar;
-	  var _ref$resolveChars = _ref.resolveChars;
-	  var resolveChars = _ref$resolveChars === undefined ? new _set2.default(['\r']) : _ref$resolveChars;
-	  var _ref$abortChars = _ref.abortChars;
-	  var abortChars = _ref$abortChars === undefined ? new _set2.default(['\x03']) : _ref$abortChars;
-
-	  return new _promise2.default(function (resolve, reject) {
-	    var isRaw = process.stdin.isRaw;
-	    var isPaused = process.stdin.isPaused();
-	    var optionsString = options.map(function (option, index) {
-	      if (index === 0) return '' + chalk.bold(option);else return '' + option;
-	    }).join(' ');
-
-	    process.stdout.write(chalk.green(question) + optionsString);
-	    process.stdin.setRawMode(true);
-	    process.stdin.resume();
-
-	    var val = '';
-	    var suggestion = '';
-	    var caretOffset = 0;
-
-	    var ondata = function ondata(v) {
-	      var s = v.toString();
-
-	      // abort upon ctrl+C
-	      if (abortChars.has(s)) {
-	        restore();
-	        return reject(new Error('User abort'));
-	      } else if ('\x1B[D' === s) {
-	        if (val.length > Math.abs(caretOffset)) {
-	          caretOffset--;
-	        }
-	      } else if ('\x1B[C' === s) {
-	        if (caretOffset < 0) {
-	          caretOffset++;
-	        }
-	      } else if ('\x08' === s || '\x7f' === s) {
-	        // delete key needs splicing according to caret position
-	        val = val.substr(0, val.length + caretOffset - 1) + val.substr(val.length + caretOffset);
-	      } else {
-	        if (resolveChars.has(s)) {
-	          restore();
-	          return resolve(val);
-	        }
-
-	        var add = forceLowerCase ? s.toLowerCase() : s;
-	        val = val.substr(0, val.length + caretOffset) + add + val.substr(val.length + caretOffset);
-	      }
-
-	      process.stdout.write(ansi.eraseLines(1) + chalk.green(question) + val);
-	      if (caretOffset) {
-	        process.stdout.write(ansi.cursorBackward(Math.abs(caretOffset)));
-	      }
-	    };
-
-	    var restore = function restore() {
-	      if (appendNewline) process.stdout.write('\n');
-
-	      process.stdin.setRawMode(isRaw);
-	      process.stdin.pause();
-	      process.stdin.removeListener('data', ondata);
-	    };
-
-	    process.stdin.on('data', ondata);
-	  });
-	}
-
-/***/ },
-/* 11 */
+/* 8 */
 /*!****************************************!*\
   !*** ./src/bin/helpers/create-gist.js ***!
   \****************************************/
@@ -369,7 +246,7 @@
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 18);
+	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 15);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -421,7 +298,7 @@
 	  };
 	}();
 
-	var _nodeFetch = __webpack_require__(/*! node-fetch */ 8);
+	var _nodeFetch = __webpack_require__(/*! node-fetch */ 6);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -430,7 +307,7 @@
 	var GIST_URL = 'https://api.github.com/gists';
 
 /***/ },
-/* 12 */
+/* 9 */
 /*!******************************************!*\
   !*** ./src/bin/helpers/url-shortener.js ***!
   \******************************************/
@@ -483,11 +360,11 @@
 	  };
 	}();
 
-	var _nodeFetch = __webpack_require__(/*! node-fetch */ 8);
+	var _nodeFetch = __webpack_require__(/*! node-fetch */ 6);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
-	var _formData = __webpack_require__(/*! form-data */ 19);
+	var _formData = __webpack_require__(/*! form-data */ 17);
 
 	var _formData2 = _interopRequireDefault(_formData);
 
@@ -496,7 +373,7 @@
 	var GIT_IO_URL = 'https://git.io/create';
 
 /***/ },
-/* 13 */
+/* 10 */
 /*!*********************************!*\
   !*** ./src/bin/lagom-create.js ***!
   \*********************************/
@@ -516,6 +393,27 @@
 	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 2);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var _fsPromise = __webpack_require__(/*! fs-promise */ 5);
+
+	var _fsPromise2 = _interopRequireDefault(_fsPromise);
+
+	var _askForInput = __webpack_require__(/*! ./helpers/ask-for-input */ 7);
+
+	var _askForInput2 = _interopRequireDefault(_askForInput);
+
+	var _chalk = __webpack_require__(/*! chalk */ 1);
+
+	var _chalk2 = _interopRequireDefault(_chalk);
+
+	var _mustache = __webpack_require__(/*! mustache */ 20);
+
+	var _mustache2 = _interopRequireDefault(_mustache);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//import askForSelection from './helpers/ask-for-selection'
+	var starterLocation = __dirname + '/../starter';
 
 	var getInput = function () {
 	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
@@ -556,7 +454,7 @@
 	            return _context.stop();
 	        }
 	      }
-	    }, _callee, this);
+	    }, _callee, undefined);
 	  }));
 
 	  return function getInput() {
@@ -577,7 +475,7 @@
 	            return _context2.stop();
 	        }
 	      }
-	    }, _callee2, this);
+	    }, _callee2, undefined);
 	  }));
 
 	  return function checkIfFolderExists(_x) {
@@ -598,7 +496,7 @@
 	            return _context3.stop();
 	        }
 	      }
-	    }, _callee3, this);
+	    }, _callee3, undefined);
 	  }));
 
 	  return function moveStarterToFolder(_x2) {
@@ -636,7 +534,7 @@
 	            return _context4.stop();
 	        }
 	      }
-	    }, _callee4, this);
+	    }, _callee4, undefined);
 	  }));
 
 	  return function generateIndex(_x3, _x4, _x5, _x6, _x7) {
@@ -705,7 +603,7 @@
 	            return _context5.stop();
 	        }
 	      }
-	    }, _callee5, this, [[9, 24]]);
+	    }, _callee5, undefined, [[9, 24]]);
 	  }));
 
 	  return function create() {
@@ -713,32 +611,8 @@
 	  };
 	}();
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 7);
-
-	var _fsPromise2 = _interopRequireDefault(_fsPromise);
-
-	var _askForInput = __webpack_require__(/*! ./helpers/ask-for-input */ 9);
-
-	var _askForInput2 = _interopRequireDefault(_askForInput);
-
-	var _askForSelection = __webpack_require__(/*! ./helpers/ask-for-selection */ 10);
-
-	var _askForSelection2 = _interopRequireDefault(_askForSelection);
-
-	var _chalk = __webpack_require__(/*! chalk */ 1);
-
-	var _chalk2 = _interopRequireDefault(_chalk);
-
-	var _mustache = __webpack_require__(/*! mustache */ 22);
-
-	var _mustache2 = _interopRequireDefault(_mustache);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var starterLocation = __dirname + '/../starter';
-
 /***/ },
-/* 14 */
+/* 11 */
 /*!*********************************!*\
   !*** ./src/bin/lagom-deploy.js ***!
   \*********************************/
@@ -751,7 +625,7 @@
 	});
 	exports.deploy = undefined;
 
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 5);
+	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 4);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
@@ -762,6 +636,24 @@
 	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 2);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var _fsPromise = __webpack_require__(/*! fs-promise */ 5);
+
+	var _fsPromise2 = _interopRequireDefault(_fsPromise);
+
+	var _createGist = __webpack_require__(/*! ./helpers/create-gist */ 8);
+
+	var _urlShortener = __webpack_require__(/*! ./helpers/url-shortener */ 9);
+
+	var _chalk = __webpack_require__(/*! chalk */ 1);
+
+	var _chalk2 = _interopRequireDefault(_chalk);
+
+	var _inliner = __webpack_require__(/*! inliner */ 18);
+
+	var _inliner2 = _interopRequireDefault(_inliner);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var printStatus = function () {
 	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(status) {
@@ -776,7 +668,7 @@
 	            return _context.stop();
 	        }
 	      }
-	    }, _callee, this);
+	    }, _callee, undefined);
 	  }));
 
 	  return function printStatus(_x) {
@@ -810,7 +702,7 @@
 	            return _context2.stop();
 	        }
 	      }
-	    }, _callee2, this);
+	    }, _callee2, undefined);
 	  }));
 
 	  return function getInlinedFile(_x2) {
@@ -885,7 +777,7 @@
 	            return _context3.stop();
 	        }
 	      }
-	    }, _callee3, this, [[2, 22]]);
+	    }, _callee3, undefined, [[2, 22]]);
 	  }));
 
 	  return function deploy(_x3) {
@@ -893,30 +785,8 @@
 	  };
 	}();
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 7);
-
-	var _fsPromise2 = _interopRequireDefault(_fsPromise);
-
-	var _createGist = __webpack_require__(/*! ./helpers/create-gist */ 11);
-
-	var _urlShortener = __webpack_require__(/*! ./helpers/url-shortener */ 12);
-
-	var _chalk = __webpack_require__(/*! chalk */ 1);
-
-	var _chalk2 = _interopRequireDefault(_chalk);
-
-	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 4);
-
-	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
-
-	var _inliner = __webpack_require__(/*! inliner */ 20);
-
-	var _inliner2 = _interopRequireDefault(_inliner);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 /***/ },
-/* 15 */
+/* 12 */
 /*!*******************************!*\
   !*** ./src/bin/lagom-help.js ***!
   \*******************************/
@@ -943,7 +813,7 @@
 	};
 
 /***/ },
-/* 16 */
+/* 13 */
 /*!*********************************!*\
   !*** ./src/bin/lagom-server.js ***!
   \*********************************/
@@ -962,7 +832,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var liveServer = __webpack_require__(/*! live-server */ 21);
+	var liveServer = __webpack_require__(/*! live-server */ 19);
 
 	var params = {
 	    port: 3000,
@@ -975,36 +845,16 @@
 	};
 
 /***/ },
-/* 17 */
-/*!**************************!*\
-  !*** ./src/bin/lagom.js ***!
-  \**************************/
-/***/ function(module, exports, __webpack_require__) {
+/* 14 */
+/*!*******************************!*\
+  !*** external "ansi-escapes" ***!
+  \*******************************/
+/***/ function(module, exports) {
 
-	'use strict';
-
-	var _lagomCreate = __webpack_require__(/*! ./lagom-create */ 13);
-
-	var _lagomServer = __webpack_require__(/*! ./lagom-server */ 16);
-
-	var _lagomDeploy = __webpack_require__(/*! ./lagom-deploy */ 14);
-
-	var _lagomHelp = __webpack_require__(/*! ./lagom-help */ 15);
-
-	if (~process.argv.indexOf('create')) {
-	  (0, _lagomCreate.create)();
-	} else if (~process.argv.indexOf('server')) {
-	  (0, _lagomServer.server)();
-	} else if (~process.argv.indexOf('deploy')) {
-	  var possibleFileName = process.argv[process.argv.indexOf('deploy') + 1];
-
-	  (0, _lagomDeploy.deploy)(possibleFileName);
-	} else {
-	  (0, _lagomHelp.help)();
-	}
+	module.exports = require("ansi-escapes");
 
 /***/ },
-/* 18 */
+/* 15 */
 /*!*******************************************************!*\
   !*** external "babel-runtime/core-js/json/stringify" ***!
   \*******************************************************/
@@ -1013,7 +863,16 @@
 	module.exports = require("babel-runtime/core-js/json/stringify");
 
 /***/ },
-/* 19 */
+/* 16 */
+/*!********************************************!*\
+  !*** external "babel-runtime/core-js/set" ***!
+  \********************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/core-js/set");
+
+/***/ },
+/* 17 */
 /*!****************************!*\
   !*** external "form-data" ***!
   \****************************/
@@ -1022,7 +881,7 @@
 	module.exports = require("form-data");
 
 /***/ },
-/* 20 */
+/* 18 */
 /*!**************************!*\
   !*** external "inliner" ***!
   \**************************/
@@ -1031,7 +890,7 @@
 	module.exports = require("inliner");
 
 /***/ },
-/* 21 */
+/* 19 */
 /*!******************************!*\
   !*** external "live-server" ***!
   \******************************/
@@ -1040,7 +899,7 @@
 	module.exports = require("live-server");
 
 /***/ },
-/* 22 */
+/* 20 */
 /*!***************************!*\
   !*** external "mustache" ***!
   \***************************/
