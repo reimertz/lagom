@@ -43,280 +43,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!******************!*\
-  !*** multi main ***!
-  \******************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./src/bin/lagom-create.js */7);
-
-
-/***/ },
-/* 1 */
-/*!************************!*\
-  !*** external "chalk" ***!
-  \************************/
-/***/ function(module, exports) {
-
-	module.exports = require("chalk");
-
-/***/ },
-/* 2 */
-/*!*******************************!*\
-  !*** external "ansi-escapes" ***!
-  \*******************************/
-/***/ function(module, exports) {
-
-	module.exports = require("ansi-escapes");
-
-/***/ },
-/* 3 */
-/*!************************************************!*\
-  !*** external "babel-runtime/core-js/promise" ***!
-  \************************************************/
-/***/ function(module, exports) {
-
-	module.exports = require("babel-runtime/core-js/promise");
-
-/***/ },
-/* 4 */
-/*!********************************************!*\
-  !*** external "babel-runtime/core-js/set" ***!
-  \********************************************/
-/***/ function(module, exports) {
-
-	module.exports = require("babel-runtime/core-js/set");
-
-/***/ },
-/* 5 */
-/*!******************************************!*\
-  !*** ./src/bin/helpers/ask-for-input.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 4);
-
-	var _set2 = _interopRequireDefault(_set);
-
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 3);
-
-	var _promise2 = _interopRequireDefault(_promise);
-
-	exports.default = askForInput;
-
-	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 2);
-
-	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
-
-	var _chalk = __webpack_require__(/*! chalk */ 1);
-
-	var _chalk2 = _interopRequireDefault(_chalk);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	//Cred to zeit.co and their email-input thingy. <3
-	function askForInput() {
-	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-	  var _ref$question = _ref.question;
-	  var question = _ref$question === undefined ? '> Enter your email: ' : _ref$question;
-	  var _ref$appendNewline = _ref.appendNewline;
-	  var appendNewline = _ref$appendNewline === undefined ? true : _ref$appendNewline;
-	  var _ref$forceLowerCase = _ref.forceLowerCase;
-	  var forceLowerCase = _ref$forceLowerCase === undefined ? true : _ref$forceLowerCase;
-	  var _ref$suggestionColor = _ref.suggestionColor;
-	  var suggestionColor = _ref$suggestionColor === undefined ? 'gray' : _ref$suggestionColor;
-	  var _ref$autoCompleteChar = _ref.autoCompleteChars;
-	  var autoCompleteChars = _ref$autoCompleteChar === undefined ? new _set2.default(['\t' /* tab */
-	  , '\r' /* return */
-	  , '\x1B[C' /* right arrow */
-	  , ' ' /* spacebar */
-	  ]) : _ref$autoCompleteChar;
-	  var _ref$resolveChars = _ref.resolveChars;
-	  var resolveChars = _ref$resolveChars === undefined ? new _set2.default(['\r']) : _ref$resolveChars;
-	  var _ref$abortChars = _ref.abortChars;
-	  var abortChars = _ref$abortChars === undefined ? new _set2.default(['\x03']) : _ref$abortChars;
-
-	  return new _promise2.default(function (resolve, reject) {
-	    var isRaw = process.stdin.isRaw;
-	    var isPaused = process.stdin.isPaused();
-
-	    process.stdout.write(_chalk2.default.green(question));
-	    process.stdin.setRawMode(true);
-	    process.stdin.resume();
-
-	    var val = '';
-	    var suggestion = '';
-	    var caretOffset = 0;
-
-	    var ondata = function ondata(v) {
-	      var s = v.toString();
-
-	      // abort upon ctrl+C
-	      if (abortChars.has(s)) {
-	        restore();
-	        return reject(new Error('User abort'));
-	      } else if ('\x1B[D' === s) {
-	        if (val.length > Math.abs(caretOffset)) {
-	          caretOffset--;
-	        }
-	      } else if ('\x1B[C' === s) {
-	        if (caretOffset < 0) {
-	          caretOffset++;
-	        }
-	      } else if ('\x08' === s || '\x7f' === s) {
-	        // delete key needs splicing according to caret position
-	        val = val.substr(0, val.length + caretOffset - 1) + val.substr(val.length + caretOffset);
-	      } else {
-	        if (resolveChars.has(s)) {
-	          restore();
-	          return resolve(val);
-	        }
-
-	        var add = forceLowerCase ? s.toLowerCase() : s;
-	        val = val.substr(0, val.length + caretOffset) + add + val.substr(val.length + caretOffset);
-	      }
-
-	      process.stdout.write(_ansiEscapes2.default.eraseLines(1) + _chalk2.default.green(question) + val);
-	      if (caretOffset) {
-	        process.stdout.write(_ansiEscapes2.default.cursorBackward(Math.abs(caretOffset)));
-	      }
-	    };
-
-	    var restore = function restore() {
-	      if (appendNewline) process.stdout.write('\n');
-
-	      process.stdin.setRawMode(isRaw);
-	      process.stdin.pause();
-	      process.stdin.removeListener('data', ondata);
-	    };
-
-	    process.stdin.on('data', ondata);
-	  });
-	}
-
-/***/ },
-/* 6 */
-/*!**********************************************!*\
-  !*** ./src/bin/helpers/ask-for-selection.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 4);
-
-	var _set2 = _interopRequireDefault(_set);
-
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 3);
-
-	var _promise2 = _interopRequireDefault(_promise);
-
-	exports.default = askForInput;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ansi = __webpack_require__(/*! ansi-escapes */ 2);
-	var chalk = __webpack_require__(/*! chalk */ 1);
-
-	//Cred to zeit.co and their email-input thingy. <3
-	function askForInput() {
-	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-	  var _ref$question = _ref.question;
-	  var question = _ref$question === undefined ? '> Enter your email: ' : _ref$question;
-	  var _ref$options = _ref.options;
-	  var options = _ref$options === undefined ? ['yes', 'no'] : _ref$options;
-	  var _ref$appendNewline = _ref.appendNewline;
-	  var appendNewline = _ref$appendNewline === undefined ? true : _ref$appendNewline;
-	  var _ref$forceLowerCase = _ref.forceLowerCase;
-	  var forceLowerCase = _ref$forceLowerCase === undefined ? true : _ref$forceLowerCase;
-	  var _ref$suggestionColor = _ref.suggestionColor;
-	  var suggestionColor = _ref$suggestionColor === undefined ? 'gray' : _ref$suggestionColor;
-	  var _ref$autoCompleteChar = _ref.autoCompleteChars;
-	  var autoCompleteChars = _ref$autoCompleteChar === undefined ? new _set2.default(['\t' /* tab */
-	  , '\r' /* return */
-	  , '\x1B[C' /* right arrow */
-	  , ' ' /* spacebar */
-	  ]) : _ref$autoCompleteChar;
-	  var _ref$resolveChars = _ref.resolveChars;
-	  var resolveChars = _ref$resolveChars === undefined ? new _set2.default(['\r']) : _ref$resolveChars;
-	  var _ref$abortChars = _ref.abortChars;
-	  var abortChars = _ref$abortChars === undefined ? new _set2.default(['\x03']) : _ref$abortChars;
-
-	  return new _promise2.default(function (resolve, reject) {
-	    var isRaw = process.stdin.isRaw;
-	    var isPaused = process.stdin.isPaused();
-	    var optionsString = options.map(function (option, index) {
-	      if (index === 0) return '' + chalk.bold(option);else return '' + option;
-	    }).join(' ');
-
-	    process.stdout.write(chalk.green(question) + optionsString);
-	    process.stdin.setRawMode(true);
-	    process.stdin.resume();
-
-	    var val = '';
-	    var suggestion = '';
-	    var caretOffset = 0;
-
-	    var ondata = function ondata(v) {
-	      var s = v.toString();
-
-	      // abort upon ctrl+C
-	      if (abortChars.has(s)) {
-	        restore();
-	        return reject(new Error('User abort'));
-	      } else if ('\x1B[D' === s) {
-	        if (val.length > Math.abs(caretOffset)) {
-	          caretOffset--;
-	        }
-	      } else if ('\x1B[C' === s) {
-	        if (caretOffset < 0) {
-	          caretOffset++;
-	        }
-	      } else if ('\x08' === s || '\x7f' === s) {
-	        // delete key needs splicing according to caret position
-	        val = val.substr(0, val.length + caretOffset - 1) + val.substr(val.length + caretOffset);
-	      } else {
-	        if (resolveChars.has(s)) {
-	          restore();
-	          return resolve(val);
-	        }
-
-	        var add = forceLowerCase ? s.toLowerCase() : s;
-	        val = val.substr(0, val.length + caretOffset) + add + val.substr(val.length + caretOffset);
-	      }
-
-	      process.stdout.write(ansi.eraseLines(1) + chalk.green(question) + val);
-	      if (caretOffset) {
-	        process.stdout.write(ansi.cursorBackward(Math.abs(caretOffset)));
-	      }
-	    };
-
-	    var restore = function restore() {
-	      if (appendNewline) process.stdout.write('\n');
-
-	      process.stdin.setRawMode(isRaw);
-	      process.stdin.pause();
-	      process.stdin.removeListener('data', ondata);
-	    };
-
-	    process.stdin.on('data', ondata);
-	  });
-	}
-
-/***/ },
-/* 7 */
 /*!*********************************!*\
   !*** ./src/bin/lagom-create.js ***!
   \*********************************/
@@ -329,13 +55,34 @@
 	});
 	exports.create = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 9);
+	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 7);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 8);
+	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 6);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var _fsPromise = __webpack_require__(/*! fs-promise */ 8);
+
+	var _fsPromise2 = _interopRequireDefault(_fsPromise);
+
+	var _askForInput = __webpack_require__(/*! ./helpers/ask-for-input */ 2);
+
+	var _askForInput2 = _interopRequireDefault(_askForInput);
+
+	var _chalk = __webpack_require__(/*! chalk */ 1);
+
+	var _chalk2 = _interopRequireDefault(_chalk);
+
+	var _mustache = __webpack_require__(/*! mustache */ 9);
+
+	var _mustache2 = _interopRequireDefault(_mustache);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//import askForSelection from './helpers/ask-for-selection'
+	var starterLocation = __dirname + '/../starter';
 
 	var getInput = function () {
 	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
@@ -376,7 +123,7 @@
 	            return _context.stop();
 	        }
 	      }
-	    }, _callee, this);
+	    }, _callee, undefined);
 	  }));
 
 	  return function getInput() {
@@ -397,7 +144,7 @@
 	            return _context2.stop();
 	        }
 	      }
-	    }, _callee2, this);
+	    }, _callee2, undefined);
 	  }));
 
 	  return function checkIfFolderExists(_x) {
@@ -418,7 +165,7 @@
 	            return _context3.stop();
 	        }
 	      }
-	    }, _callee3, this);
+	    }, _callee3, undefined);
 	  }));
 
 	  return function moveStarterToFolder(_x2) {
@@ -456,7 +203,7 @@
 	            return _context4.stop();
 	        }
 	      }
-	    }, _callee4, this);
+	    }, _callee4, undefined);
 	  }));
 
 	  return function generateIndex(_x3, _x4, _x5, _x6, _x7) {
@@ -525,7 +272,7 @@
 	            return _context5.stop();
 	        }
 	      }
-	    }, _callee5, this, [[9, 24]]);
+	    }, _callee5, undefined, [[9, 24]]);
 	  }));
 
 	  return function create() {
@@ -533,32 +280,148 @@
 	  };
 	}();
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 10);
+/***/ },
+/* 1 */
+/*!************************!*\
+  !*** external "chalk" ***!
+  \************************/
+/***/ function(module, exports) {
 
-	var _fsPromise2 = _interopRequireDefault(_fsPromise);
+	module.exports = require("chalk");
 
-	var _askForInput = __webpack_require__(/*! ./helpers/ask-for-input */ 5);
+/***/ },
+/* 2 */
+/*!******************************************!*\
+  !*** ./src/bin/helpers/ask-for-input.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
 
-	var _askForInput2 = _interopRequireDefault(_askForInput);
+	'use strict';
 
-	var _askForSelection = __webpack_require__(/*! ./helpers/ask-for-selection */ 6);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var _askForSelection2 = _interopRequireDefault(_askForSelection);
+	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 5);
+
+	var _set2 = _interopRequireDefault(_set);
+
+	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 4);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
+	exports.default = askForInput;
+
+	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 3);
+
+	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
 
 	var _chalk = __webpack_require__(/*! chalk */ 1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	var _mustache = __webpack_require__(/*! mustache */ 11);
-
-	var _mustache2 = _interopRequireDefault(_mustache);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var starterLocation = __dirname + '/../starter';
+	//Cred to zeit.co and their email-input thingy. <3
+	function askForInput() {
+	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	  var _ref$question = _ref.question;
+	  var question = _ref$question === undefined ? '> Enter your email: ' : _ref$question;
+	  var _ref$appendNewline = _ref.appendNewline;
+	  var appendNewline = _ref$appendNewline === undefined ? true : _ref$appendNewline;
+	  var _ref$forceLowerCase = _ref.forceLowerCase;
+	  var forceLowerCase = _ref$forceLowerCase === undefined ? true : _ref$forceLowerCase;
+	  var _ref$resolveChars = _ref.resolveChars;
+	  var resolveChars = _ref$resolveChars === undefined ? new _set2.default(['\r']) : _ref$resolveChars;
+	  var _ref$abortChars = _ref.abortChars;
+	  var abortChars = _ref$abortChars === undefined ? new _set2.default(['\x03']) : _ref$abortChars;
+
+	  return new _promise2.default(function (resolve, reject) {
+	    var isRaw = process.stdin.se;
+
+	    process.stdout.write(_chalk2.default.green(question));
+	    process.stdin.setRawMode(true);
+	    process.stdin.resume();
+
+	    var val = '';
+	    var caretOffset = 0;
+
+	    var ondata = function ondata(v) {
+	      var s = v.toString();
+
+	      // abort upon ctrl+C
+	      if (abortChars.has(s)) {
+	        restore();
+	        return reject(new Error('User abort'));
+	      } else if ('\x1B[D' === s) {
+	        if (val.length > Math.abs(caretOffset)) {
+	          caretOffset--;
+	        }
+	      } else if ('\x1B[C' === s) {
+	        if (caretOffset < 0) {
+	          caretOffset++;
+	        }
+	      } else if ('\x08' === s || '\x7f' === s) {
+	        // delete key needs splicing according to caret position
+	        val = val.substr(0, val.length + caretOffset - 1) + val.substr(val.length + caretOffset);
+	      } else {
+	        if (resolveChars.has(s)) {
+	          restore();
+	          return resolve(val);
+	        }
+
+	        var add = forceLowerCase ? s.toLowerCase() : s;
+	        val = val.substr(0, val.length + caretOffset) + add + val.substr(val.length + caretOffset);
+	      }
+
+	      process.stdout.write(_ansiEscapes2.default.eraseLines(1) + _chalk2.default.green(question) + val);
+	      if (caretOffset) {
+	        process.stdout.write(_ansiEscapes2.default.cursorBackward(Math.abs(caretOffset)));
+	      }
+	    };
+
+	    var restore = function restore() {
+	      if (appendNewline) process.stdout.write('\n');
+
+	      process.stdin.setRawMode(isRaw);
+	      process.stdin.pause();
+	      process.stdin.removeListener('data', ondata);
+	    };
+
+	    process.stdin.on('data', ondata);
+	  });
+	}
 
 /***/ },
-/* 8 */
+/* 3 */
+/*!*******************************!*\
+  !*** external "ansi-escapes" ***!
+  \*******************************/
+/***/ function(module, exports) {
+
+	module.exports = require("ansi-escapes");
+
+/***/ },
+/* 4 */
+/*!************************************************!*\
+  !*** external "babel-runtime/core-js/promise" ***!
+  \************************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/core-js/promise");
+
+/***/ },
+/* 5 */
+/*!********************************************!*\
+  !*** external "babel-runtime/core-js/set" ***!
+  \********************************************/
+/***/ function(module, exports) {
+
+	module.exports = require("babel-runtime/core-js/set");
+
+/***/ },
+/* 6 */
 /*!*********************************************************!*\
   !*** external "babel-runtime/helpers/asyncToGenerator" ***!
   \*********************************************************/
@@ -567,7 +430,7 @@
 	module.exports = require("babel-runtime/helpers/asyncToGenerator");
 
 /***/ },
-/* 9 */
+/* 7 */
 /*!********************************************!*\
   !*** external "babel-runtime/regenerator" ***!
   \********************************************/
@@ -576,7 +439,7 @@
 	module.exports = require("babel-runtime/regenerator");
 
 /***/ },
-/* 10 */
+/* 8 */
 /*!*****************************!*\
   !*** external "fs-promise" ***!
   \*****************************/
@@ -585,7 +448,7 @@
 	module.exports = require("fs-promise");
 
 /***/ },
-/* 11 */
+/* 9 */
 /*!***************************!*\
   !*** external "mustache" ***!
   \***************************/

@@ -43,16 +43,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!******************!*\
-  !*** multi main ***!
-  \******************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./src/bin/lagom-server.js */1);
-
-
-/***/ },
-/* 1 */
 /*!*********************************!*\
   !*** ./src/bin/lagom-server.js ***!
   \*********************************/
@@ -65,13 +55,13 @@
 	});
 	exports.server = undefined;
 
-	var _chalk = __webpack_require__(/*! chalk */ 2);
+	var _chalk = __webpack_require__(/*! chalk */ 1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var liveServer = __webpack_require__(/*! live-server */ 3);
+	var liveServer = __webpack_require__(/*! live-server */ 2);
 
 	var params = {
 	    port: 3000,
@@ -84,7 +74,7 @@
 	};
 
 /***/ },
-/* 2 */
+/* 1 */
 /*!************************!*\
   !*** external "chalk" ***!
   \************************/
@@ -93,7 +83,7 @@
 	module.exports = require("chalk");
 
 /***/ },
-/* 3 */
+/* 2 */
 /*!******************************!*\
   !*** external "live-server" ***!
   \******************************/
