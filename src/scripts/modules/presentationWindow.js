@@ -1,6 +1,10 @@
 import { initMousePointer } from './mousePointer'
 
-let presentationWindow = false;
+let presentationWindow = false
+
+const onResize = () => {
+  presentationWindow.resizeTo(window.innerWidth, window.innerHeight)
+}
 
 const injectIframeAndPrepAttributes = (done) => {
   let body;
@@ -37,7 +41,7 @@ export const openPresentationWindow = () => {
   ]
 
   if (presentationWindow) {
-    return presentationWindow.focus()
+    presentationWindow.focus()
   }
   else {
     presentationWindow = window.open.apply(this, options)
@@ -64,8 +68,4 @@ export const checkIfIsRefreshedPresentationWindow = (done) => {
   else {
     done()
   }
-}
-
-const onResize = () => {
-  presentationWindow.resizeTo(window.innerWidth, window.innerHeight)
 }

@@ -6,26 +6,17 @@ export default function askForInput({
   question = '> Enter your email: ',
   appendNewline = true,
   forceLowerCase = true,
-  suggestionColor = 'gray',
-  autoCompleteChars = new Set([
-    '\t' /* tab */,
-    '\r' /* return */,
-    '\u001b[C' /* right arrow */,
-    ' ' /* spacebar */
-  ]),
   resolveChars = new Set(['\r']),
   abortChars = new Set(['\u0003']),
 } = {}) {
   return new Promise((resolve, reject) => {
-    const isRaw = process.stdin.isRaw
-    const isPaused = process.stdin.isPaused()
+    const isRaw = process.stdin.se
 
     process.stdout.write(chalk.green(question))
     process.stdin.setRawMode(true)
     process.stdin.resume()
 
     let val = ''
-    let suggestion = ''
     let caretOffset = 0
 
     const ondata = (v) => {

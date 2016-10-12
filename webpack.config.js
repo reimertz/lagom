@@ -6,11 +6,11 @@ const autoprefixer = require('autoprefixer')
 const path = require('path')
 
 const isProductionMode = ~process.argv.indexOf('-production')
+const outputDir = isProductionMode ? 'dist' : '.build'
+
 const commandFiles = ['', '-create', '-server', '-deploy', '-help'].map( command => {
   return `lagom${command}`;
 })
-
-const outputDir = isProductionMode ? 'dist' : '.build'
 
 const commonOptions = {
   resolve: {
@@ -20,14 +20,17 @@ const commonOptions = {
 }
 
 const binConfigs = commandFiles.map(commandFile => {
-    return Object.assign({}, commonOptions, {
-    entry: [`./src/bin/${commandFile}.js`],
+  return Object.assign({}, commonOptions, {
+    entry: `./src/bin/${commandFile}.js`,
     target: 'node',
     node: {
       __dirname: false,
       __filename: false,
     },
     module: {
+      preLoaders: [{
+        test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/
+      }],
       loaders: [{
         loader: 'babel',
         test: /\.js?$/,
@@ -45,9 +48,12 @@ const binConfigs = commandFiles.map(commandFile => {
 })
 
 const starterConfig = Object.assign({}, commonOptions, {
-  entry: ['./src/lagom.js'],
+  entry: './src/lagom.js',
 
   module: {
+    preLoaders: [{
+      test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/
+    }],
     loaders: [{
       test: /\.html$/,
       loader: 'html',

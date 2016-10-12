@@ -1,0 +1,12 @@
+---
+extends: eslint:recommended
+
+ecmaFeatures:
+  modules: true
+parserOptions:
+  sourceType: module
+  ecmaVersion: 8
+env:
+  es6: true
+  browser: true
+  node: true

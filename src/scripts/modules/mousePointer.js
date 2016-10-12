@@ -8,6 +8,7 @@ let mousePointerEl
 
 export const onExternalMousePointerMoved = mousePointer => {
   if (!mousePointer) return
+
   mousePointerEl.style.left = `${mousePointer.x}px`
   mousePointerEl.style.top = `${mousePointer.y}px`
 }
