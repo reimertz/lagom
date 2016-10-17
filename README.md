@@ -10,7 +10,7 @@
 
 ## installation
 ```
-yarn global lagom #much faster
+yarn global add lagom # much faster
 ```
 or
 ```
