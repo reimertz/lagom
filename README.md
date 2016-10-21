@@ -1,53 +1,61 @@
-◩ lagom
-====
+<p align="center">
+  <a href="https://github.com/reimertz/lagom">
+    <img alt="Yarn" src="lagom.png" width="500">
+  </a>
+</p>
 
-> simplistic presentation generator
+<p align="center">
+  simplistic presentation generator
+</p>
 
-[![Build Status](https://travis-ci.org/reimertz/lagom.svg?branch=master)](https://travis-ci.org/reimert/lagom)
-[![NPM version](https://img.shields.io/npm/v/lagom.svg)](https://www.npmjs.com/package/lagom)
-[![Join gitter channel](https://badges.gitter.im/reimertz/lagom.svg)](https://gitter.im/reimertz/lagom)
+<p align="center">
+  <a href="https://travis-ci.org/reimertz/lagom">
+    <img src="https://travis-ci.org/reimertz/lagom.svg?branch=master" alt="Build Status">
+  </a>
+  <a href="https://www.npmjs.com/package/lagom">
+    <img src="https://img.shields.io/npm/v/lagom.svg" alt="NPM version">
+  </a>
+  <a href="https://gitter.im/reimertz/lagom">
+    <img src="https://badges.gitter.im/reimertz/lagom.svg" alt="Join gitter channel">
+  </a>
+</p>
+
+---
+
+**Ease:** `lagom create` and you have created a folder with a presentation in it.
+
+**Simplicity:** one `<section>`, one slide.
+
+**Maintainable:** `lagom server` boots up your presentation in the browser. it comes with livereloading for easy edits.
+
+**Magic:** `lagom deploy` will inline all the content of the presentation into one single file, deploy it freely and anonymously on github and finally generate a short url.
+
+## Features
+- 0 online dependencies: no more OMG!! moments because of bad wifi
+- live-reloading server
+- Presentation mode: just press p to initiate presentation mode
+- Speaker notes
+- Synced Aspect ratio
+- Synced mouse pointer
+- Mirrored highlighting
 
 
-## installation
+## install lagom
 ```
-yarn global add lagom # much faster
-```
-or
-```
+yarn global lagom
+# or
 npm install lagom -g --production
 ```
 
 ## usage
-
-### create a presentation
 ```
-lagom create
-```
-
-### work on a presentation / do a presentation
-```
-cd <lagom project folder>
-lagom server
+$ lagom
+lagom create              create a new presentation
+lagom server              start live-reloading server
+lagom deploy <filename>   deploy presentation to a gist
+lagom help                show this help
 ```
 
-### deploy presentation
-```
-lagom deploy
-> http://lagom.hook.io?c=<code>
-```
-
-## development
-```
-git clone https://github.com/reimertz/lagom.git
-cd lagom
-npm install
-
-#then
-npm run bin <command> #to run lagom cli
-
-webpack -w # to auto-build everything on filechanges
-npm run bin server # to serve index.html in folder
-```
 
 ## todo
 
