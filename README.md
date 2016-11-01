@@ -56,6 +56,12 @@ lagom deploy <filename>   deploy presentation to a gist
 lagom help                show this help
 ```
 
+## example presentations
+These is a list of example presentations, please PR this readme if you'd like to add presentation you created.
+```
+https://reimertz.github.io/lagom/
+http://lagom.hook.io/?c=vPRgE
+```
 
 ## todo
 
