@@ -14,3 +14,19 @@
 @import "elements/iframe";
 
 @import "vendor/highlight";
+
+@media print {
+  body {
+    height: auto;
+    overflow: scroll;
+  }
+
+  section {
+    opacity: 1;
+    height: 100vh;
+  }
+
+  span[id=lagom-mousepointer] {
+    display: none;
+  }
+}
