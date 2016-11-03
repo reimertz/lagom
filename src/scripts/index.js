@@ -23,7 +23,7 @@ const onKey = event => {
 
   if      (keyCode == 37) previousSlide()
   else if (keyCode == 39) nextSlide()
-  else if (keyCode == 80) openPresentationWindow()
+  else if (keyCode == 80 && !(event.metaKey || event.ctrlKey)) openPresentationWindow()
 }
 
 const initLagom = () => {
