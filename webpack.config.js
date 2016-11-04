@@ -5,7 +5,7 @@ const nodeExternals = require('webpack-node-externals')
 const autoprefixer = require('autoprefixer')
 const path = require('path')
 
-const isProductionMode = ~process.argv.indexOf('-production')
+const isProductionMode = ~process.argv.indexOf('-p')
 const outputDir = isProductionMode ? 'dist' : '.build'
 
 const commandFiles = ['', '-create', '-server', '-deploy', '-help'].map( command => {

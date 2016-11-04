@@ -10,7 +10,7 @@
     "./dist"
   ],
   "scripts": {
-    "dist": "webpack -production --progress --optimize-minimize",
+    "dist": "rm -rf dist && webpack -p --progress --optimize-minimize",
     "build": "webpack",
     "bin": "node ./.build/bin/lagom",
     "watch": "webpack-dev-server --content-base ./.build/starter",
