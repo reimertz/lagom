@@ -42,7 +42,7 @@
 
 ## install lagom
 ```
-yarn global lagom
+yarn global add lagom # much faster
 # or
 npm install lagom -g --production
 ```
