@@ -43,9 +43,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*********************************!*\
-  !*** ./src/bin/lagom-create.js ***!
-  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55,27 +52,27 @@
 	});
 	exports.create = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 7);
+	var _regenerator = __webpack_require__(7);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 6);
+	var _asyncToGenerator2 = __webpack_require__(6);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 8);
+	var _fsPromise = __webpack_require__(8);
 
 	var _fsPromise2 = _interopRequireDefault(_fsPromise);
 
-	var _askForInput = __webpack_require__(/*! ./helpers/ask-for-input */ 2);
+	var _askForInput = __webpack_require__(2);
 
 	var _askForInput2 = _interopRequireDefault(_askForInput);
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	var _mustache = __webpack_require__(/*! mustache */ 9);
+	var _mustache = __webpack_require__(9);
 
 	var _mustache2 = _interopRequireDefault(_mustache);
 
@@ -282,18 +279,12 @@
 
 /***/ },
 /* 1 */
-/*!************************!*\
-  !*** external "chalk" ***!
-  \************************/
 /***/ function(module, exports) {
 
 	module.exports = require("chalk");
 
 /***/ },
 /* 2 */
-/*!******************************************!*\
-  !*** ./src/bin/helpers/ask-for-input.js ***!
-  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -302,21 +293,21 @@
 	  value: true
 	});
 
-	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 5);
+	var _set = __webpack_require__(5);
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 4);
+	var _promise = __webpack_require__(4);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
 	exports.default = askForInput;
 
-	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 3);
+	var _ansiEscapes = __webpack_require__(3);
 
 	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
@@ -395,63 +386,42 @@
 
 /***/ },
 /* 3 */
-/*!*******************************!*\
-  !*** external "ansi-escapes" ***!
-  \*******************************/
 /***/ function(module, exports) {
 
 	module.exports = require("ansi-escapes");
 
 /***/ },
 /* 4 */
-/*!************************************************!*\
-  !*** external "babel-runtime/core-js/promise" ***!
-  \************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
 /* 5 */
-/*!********************************************!*\
-  !*** external "babel-runtime/core-js/set" ***!
-  \********************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/set");
 
 /***/ },
 /* 6 */
-/*!*********************************************************!*\
-  !*** external "babel-runtime/helpers/asyncToGenerator" ***!
-  \*********************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/helpers/asyncToGenerator");
 
 /***/ },
 /* 7 */
-/*!********************************************!*\
-  !*** external "babel-runtime/regenerator" ***!
-  \********************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/regenerator");
 
 /***/ },
 /* 8 */
-/*!*****************************!*\
-  !*** external "fs-promise" ***!
-  \*****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("fs-promise");
 
 /***/ },
 /* 9 */
-/*!***************************!*\
-  !*** external "mustache" ***!
-  \***************************/
 /***/ function(module, exports) {
 
 	module.exports = require("mustache");

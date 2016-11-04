@@ -43,9 +43,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*******************************!*\
-  !*** ./src/bin/lagom-help.js ***!
-  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55,7 +52,7 @@
 	});
 	exports.help = undefined;
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
@@ -70,9 +67,6 @@
 
 /***/ },
 /* 1 */
-/*!************************!*\
-  !*** external "chalk" ***!
-  \************************/
 /***/ function(module, exports) {
 
 	module.exports = require("chalk");

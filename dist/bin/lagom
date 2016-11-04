@@ -43,20 +43,17 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**************************!*\
-  !*** ./src/bin/lagom.js ***!
-  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _lagomCreate = __webpack_require__(/*! ./lagom-create */ 10);
+	var _lagomCreate = __webpack_require__(10);
 
-	var _lagomServer = __webpack_require__(/*! ./lagom-server */ 13);
+	var _lagomServer = __webpack_require__(13);
 
-	var _lagomDeploy = __webpack_require__(/*! ./lagom-deploy */ 11);
+	var _lagomDeploy = __webpack_require__(11);
 
-	var _lagomHelp = __webpack_require__(/*! ./lagom-help */ 12);
+	var _lagomHelp = __webpack_require__(12);
 
 	if (~process.argv.indexOf('create')) {
 	  (0, _lagomCreate.create)();
@@ -72,63 +69,42 @@
 
 /***/ },
 /* 1 */
-/*!************************!*\
-  !*** external "chalk" ***!
-  \************************/
 /***/ function(module, exports) {
 
 	module.exports = require("chalk");
 
 /***/ },
 /* 2 */
-/*!*********************************************************!*\
-  !*** external "babel-runtime/helpers/asyncToGenerator" ***!
-  \*********************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/helpers/asyncToGenerator");
 
 /***/ },
 /* 3 */
-/*!********************************************!*\
-  !*** external "babel-runtime/regenerator" ***!
-  \********************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/regenerator");
 
 /***/ },
 /* 4 */
-/*!************************************************!*\
-  !*** external "babel-runtime/core-js/promise" ***!
-  \************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
 /* 5 */
-/*!*****************************!*\
-  !*** external "fs-promise" ***!
-  \*****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("fs-promise");
 
 /***/ },
 /* 6 */
-/*!*****************************!*\
-  !*** external "node-fetch" ***!
-  \*****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("node-fetch");
 
 /***/ },
 /* 7 */
-/*!******************************************!*\
-  !*** ./src/bin/helpers/ask-for-input.js ***!
-  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -137,21 +113,21 @@
 	  value: true
 	});
 
-	var _set = __webpack_require__(/*! babel-runtime/core-js/set */ 16);
+	var _set = __webpack_require__(16);
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 4);
+	var _promise = __webpack_require__(4);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
 	exports.default = askForInput;
 
-	var _ansiEscapes = __webpack_require__(/*! ansi-escapes */ 14);
+	var _ansiEscapes = __webpack_require__(14);
 
 	var _ansiEscapes2 = _interopRequireDefault(_ansiEscapes);
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
@@ -230,9 +206,6 @@
 
 /***/ },
 /* 8 */
-/*!****************************************!*\
-  !*** ./src/bin/helpers/create-gist.js ***!
-  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -242,15 +215,15 @@
 	});
 	exports.createGist = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 3);
+	var _regenerator = __webpack_require__(3);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 15);
+	var _stringify = __webpack_require__(15);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 2);
+	var _asyncToGenerator2 = __webpack_require__(2);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -298,7 +271,7 @@
 	  };
 	}();
 
-	var _nodeFetch = __webpack_require__(/*! node-fetch */ 6);
+	var _nodeFetch = __webpack_require__(6);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -308,9 +281,6 @@
 
 /***/ },
 /* 9 */
-/*!******************************************!*\
-  !*** ./src/bin/helpers/url-shortener.js ***!
-  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -320,11 +290,11 @@
 	});
 	exports.urlShortener = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 3);
+	var _regenerator = __webpack_require__(3);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 2);
+	var _asyncToGenerator2 = __webpack_require__(2);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -360,11 +330,11 @@
 	  };
 	}();
 
-	var _nodeFetch = __webpack_require__(/*! node-fetch */ 6);
+	var _nodeFetch = __webpack_require__(6);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
-	var _formData = __webpack_require__(/*! form-data */ 17);
+	var _formData = __webpack_require__(17);
 
 	var _formData2 = _interopRequireDefault(_formData);
 
@@ -374,9 +344,6 @@
 
 /***/ },
 /* 10 */
-/*!*********************************!*\
-  !*** ./src/bin/lagom-create.js ***!
-  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -386,27 +353,27 @@
 	});
 	exports.create = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 3);
+	var _regenerator = __webpack_require__(3);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 2);
+	var _asyncToGenerator2 = __webpack_require__(2);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 5);
+	var _fsPromise = __webpack_require__(5);
 
 	var _fsPromise2 = _interopRequireDefault(_fsPromise);
 
-	var _askForInput = __webpack_require__(/*! ./helpers/ask-for-input */ 7);
+	var _askForInput = __webpack_require__(7);
 
 	var _askForInput2 = _interopRequireDefault(_askForInput);
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	var _mustache = __webpack_require__(/*! mustache */ 20);
+	var _mustache = __webpack_require__(20);
 
 	var _mustache2 = _interopRequireDefault(_mustache);
 
@@ -613,9 +580,6 @@
 
 /***/ },
 /* 11 */
-/*!*********************************!*\
-  !*** ./src/bin/lagom-deploy.js ***!
-  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -625,31 +589,31 @@
 	});
 	exports.deploy = undefined;
 
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 4);
+	var _promise = __webpack_require__(4);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 3);
+	var _regenerator = __webpack_require__(3);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 2);
+	var _asyncToGenerator2 = __webpack_require__(2);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 5);
+	var _fsPromise = __webpack_require__(5);
 
 	var _fsPromise2 = _interopRequireDefault(_fsPromise);
 
-	var _createGist = __webpack_require__(/*! ./helpers/create-gist */ 8);
+	var _createGist = __webpack_require__(8);
 
-	var _urlShortener = __webpack_require__(/*! ./helpers/url-shortener */ 9);
+	var _urlShortener = __webpack_require__(9);
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	var _inliner = __webpack_require__(/*! inliner */ 18);
+	var _inliner = __webpack_require__(18);
 
 	var _inliner2 = _interopRequireDefault(_inliner);
 
@@ -787,9 +751,6 @@
 
 /***/ },
 /* 12 */
-/*!*******************************!*\
-  !*** ./src/bin/lagom-help.js ***!
-  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -799,7 +760,7 @@
 	});
 	exports.help = undefined;
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
@@ -814,9 +775,6 @@
 
 /***/ },
 /* 13 */
-/*!*********************************!*\
-  !*** ./src/bin/lagom-server.js ***!
-  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -826,13 +784,13 @@
 	});
 	exports.server = undefined;
 
-	var _chalk = __webpack_require__(/*! chalk */ 1);
+	var _chalk = __webpack_require__(1);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var liveServer = __webpack_require__(/*! live-server */ 19);
+	var liveServer = __webpack_require__(19);
 
 	var params = {
 	    port: 3000,
@@ -846,63 +804,42 @@
 
 /***/ },
 /* 14 */
-/*!*******************************!*\
-  !*** external "ansi-escapes" ***!
-  \*******************************/
 /***/ function(module, exports) {
 
 	module.exports = require("ansi-escapes");
 
 /***/ },
 /* 15 */
-/*!*******************************************************!*\
-  !*** external "babel-runtime/core-js/json/stringify" ***!
-  \*******************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/json/stringify");
 
 /***/ },
 /* 16 */
-/*!********************************************!*\
-  !*** external "babel-runtime/core-js/set" ***!
-  \********************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/set");
 
 /***/ },
 /* 17 */
-/*!****************************!*\
-  !*** external "form-data" ***!
-  \****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("form-data");
 
 /***/ },
 /* 18 */
-/*!**************************!*\
-  !*** external "inliner" ***!
-  \**************************/
 /***/ function(module, exports) {
 
 	module.exports = require("inliner");
 
 /***/ },
 /* 19 */
-/*!******************************!*\
-  !*** external "live-server" ***!
-  \******************************/
 /***/ function(module, exports) {
 
 	module.exports = require("live-server");
 
 /***/ },
 /* 20 */
-/*!***************************!*\
-  !*** external "mustache" ***!
-  \***************************/
 /***/ function(module, exports) {
 
 	module.exports = require("mustache");

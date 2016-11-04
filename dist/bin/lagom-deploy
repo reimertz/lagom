@@ -43,9 +43,6 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*********************************!*\
-  !*** ./src/bin/lagom-deploy.js ***!
-  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55,31 +52,31 @@
 	});
 	exports.deploy = undefined;
 
-	var _promise = __webpack_require__(/*! babel-runtime/core-js/promise */ 7);
+	var _promise = __webpack_require__(7);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
+	var _regenerator = __webpack_require__(2);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
+	var _asyncToGenerator2 = __webpack_require__(1);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-	var _fsPromise = __webpack_require__(/*! fs-promise */ 10);
+	var _fsPromise = __webpack_require__(10);
 
 	var _fsPromise2 = _interopRequireDefault(_fsPromise);
 
-	var _createGist = __webpack_require__(/*! ./helpers/create-gist */ 4);
+	var _createGist = __webpack_require__(4);
 
-	var _urlShortener = __webpack_require__(/*! ./helpers/url-shortener */ 5);
+	var _urlShortener = __webpack_require__(5);
 
-	var _chalk = __webpack_require__(/*! chalk */ 8);
+	var _chalk = __webpack_require__(8);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	var _inliner = __webpack_require__(/*! inliner */ 11);
+	var _inliner = __webpack_require__(11);
 
 	var _inliner2 = _interopRequireDefault(_inliner);
 
@@ -217,36 +214,24 @@
 
 /***/ },
 /* 1 */
-/*!*********************************************************!*\
-  !*** external "babel-runtime/helpers/asyncToGenerator" ***!
-  \*********************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/helpers/asyncToGenerator");
 
 /***/ },
 /* 2 */
-/*!********************************************!*\
-  !*** external "babel-runtime/regenerator" ***!
-  \********************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/regenerator");
 
 /***/ },
 /* 3 */
-/*!*****************************!*\
-  !*** external "node-fetch" ***!
-  \*****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("node-fetch");
 
 /***/ },
 /* 4 */
-/*!****************************************!*\
-  !*** ./src/bin/helpers/create-gist.js ***!
-  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -256,15 +241,15 @@
 	});
 	exports.createGist = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
+	var _regenerator = __webpack_require__(2);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ 6);
+	var _stringify = __webpack_require__(6);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
+	var _asyncToGenerator2 = __webpack_require__(1);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -312,7 +297,7 @@
 	  };
 	}();
 
-	var _nodeFetch = __webpack_require__(/*! node-fetch */ 3);
+	var _nodeFetch = __webpack_require__(3);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
@@ -322,9 +307,6 @@
 
 /***/ },
 /* 5 */
-/*!******************************************!*\
-  !*** ./src/bin/helpers/url-shortener.js ***!
-  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -334,11 +316,11 @@
 	});
 	exports.urlShortener = undefined;
 
-	var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ 2);
+	var _regenerator = __webpack_require__(2);
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ 1);
+	var _asyncToGenerator2 = __webpack_require__(1);
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -374,11 +356,11 @@
 	  };
 	}();
 
-	var _nodeFetch = __webpack_require__(/*! node-fetch */ 3);
+	var _nodeFetch = __webpack_require__(3);
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
-	var _formData = __webpack_require__(/*! form-data */ 9);
+	var _formData = __webpack_require__(9);
 
 	var _formData2 = _interopRequireDefault(_formData);
 
@@ -388,54 +370,36 @@
 
 /***/ },
 /* 6 */
-/*!*******************************************************!*\
-  !*** external "babel-runtime/core-js/json/stringify" ***!
-  \*******************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/json/stringify");
 
 /***/ },
 /* 7 */
-/*!************************************************!*\
-  !*** external "babel-runtime/core-js/promise" ***!
-  \************************************************/
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
 /* 8 */
-/*!************************!*\
-  !*** external "chalk" ***!
-  \************************/
 /***/ function(module, exports) {
 
 	module.exports = require("chalk");
 
 /***/ },
 /* 9 */
-/*!****************************!*\
-  !*** external "form-data" ***!
-  \****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("form-data");
 
 /***/ },
 /* 10 */
-/*!*****************************!*\
-  !*** external "fs-promise" ***!
-  \*****************************/
 /***/ function(module, exports) {
 
 	module.exports = require("fs-promise");
 
 /***/ },
 /* 11 */
-/*!**************************!*\
-  !*** external "inliner" ***!
-  \**************************/
 /***/ function(module, exports) {
 
 	module.exports = require("inliner");
