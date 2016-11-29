@@ -1,6 +1,6 @@
 $progress-height: 5px;
 
-body:after {
+body:before {
   background: black;
   content: '';
   display: block;
@@ -12,12 +12,23 @@ body:after {
   width: 0%;
 }
 
-body[data-lagom-progress]:after {
+body[data-lagom-progress]:before {
   width: 100%;
 }
 
 @for $i from 0 through 100 {
-  body[data-lagom-progress="#{$i}"]:after {
+  body[data-lagom-progress="#{$i}"]:before {
     width: percentage($i/100);
   }
+}
+
+body:after {
+  font-size: 1.2rem;
+  right: 1.5rem;
+  padding: 1rem;
+  position: fixed;
+  text-align: left;
+  bottom: 1.5rem;
+  z-index: 3;
+  content: attr(data-lagom-current-slide) " / " attr(data-lagom-total-slides);
 }
