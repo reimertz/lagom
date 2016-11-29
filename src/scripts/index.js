@@ -28,10 +28,10 @@ const onKey = event => {
 
 const initLagom = () => {
 
-  const initialSlide = getCurrentSlide() || 0
+  const initialSlide = getCurrentSlide() || 1
 
   Array.prototype.forEach.call(slides, (slide, i) => {
-    slide.id = i
+    slide.id = i + 1
   })
 
   //;-; don't want to bring in promises just for this thing.

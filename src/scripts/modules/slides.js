@@ -6,7 +6,9 @@ import {
 import { checkForSlideComment } from './comments'
 
 export const slides = document.querySelectorAll('body > section')
-export const nrOfSlides = slides.length - 1
+export const nrOfSlides = slides.length
+
+document.body.setAttribute('data-lagom-total-slides', nrOfSlides)
 
 const setHash = id => {
   window.location.hash = id
@@ -44,7 +46,7 @@ export const setSlide = id => {
 }
 
 export const previousSlide = () => {
-  return setSlide(Math.max(getCurrentSlide() - 1,  0))
+  return setSlide(Math.max(getCurrentSlide() - 1,  1))
 }
 
 export const nextSlide = () => {
