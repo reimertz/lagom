@@ -9,6 +9,7 @@ body:before {
   position: fixed;
   top: 0;
   transition: 500ms width;
+  z-index: 3;
   width: 0%;
 }
 

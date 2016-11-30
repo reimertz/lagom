@@ -15,7 +15,7 @@ const setHash = id => {
 }
 
 const setProgress = id => {
-  document.body.setAttribute('data-lagom-progress', Math.floor((id / nrOfSlides) * 100))
+  document.body.setAttribute('data-lagom-progress', Math.floor(((id-1) / (nrOfSlides-1)) * 100))
 }
 
 const setCurrentSlide = id => {
@@ -34,7 +34,7 @@ export const getCurrentSlide = () => {
 
 export const setSlide = id => {
   if (window.name === 'lagom_next_slide') {
-    updateViews(id + 1)
+    updateViews(Math.min(getCurrentSlide() + 1,  nrOfSlides))
   }
   else {
     if (window.name === 'lagom_presentation_window') {

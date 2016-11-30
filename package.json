@@ -1,6 +1,6 @@
 {
   "name": "lagom",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "description": "simplistic presentation generator",
   "main": "index.js",
   "bin": {

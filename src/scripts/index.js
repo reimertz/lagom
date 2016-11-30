@@ -30,7 +30,7 @@ const initLagom = () => {
   const initialSlide = getCurrentSlide() || 1
 
   //;-; some browsers doesn't handle reloads properly and you'll see a white page.
-  setSlide(0)
+  window.location.hash = ''
 
   Array.prototype.forEach.call(slides, (slide, i) => {
     slide.id = i + 1
