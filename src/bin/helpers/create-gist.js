@@ -2,16 +2,16 @@ import fetch from 'node-fetch'
 
 const GIST_URL = 'https://api.github.com/gists'
 
-export async function createGist(indexFile) {
+export async function createGist(file, fileName, description) {
+  let files = {}
 
+  files[fileName] = {
+    content: file
+  }
   const body = {
-    description: 'a lagom.js presentation',
-    public: true,
-    files: {
-      'lagom.html': {
-        content: indexFile
-      }
-    }
+    description: description,
+    public: false,
+    files: files
   }
 
   return fetch(GIST_URL, {
@@ -25,8 +25,8 @@ export async function createGist(indexFile) {
     return response.json()
   })
   .then(json => {
-    const htmlFile = json.files['lagom.html']
-    const rawUrl = htmlFile.raw_url
+    const uploadedFile = json.files[fileName]
+    const rawUrl = uploadedFile.raw_url
 
     return rawUrl
   })
