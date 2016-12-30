@@ -6,9 +6,6 @@
   "bin": {
     "lagom": "./dist/bin/lagom"
   },
-  "files": [
-    "./dist"
-  ],
   "scripts": {
     "dist": "rm -rf dist && webpack -p --progress --optimize-minimize",
     "build": "webpack",
