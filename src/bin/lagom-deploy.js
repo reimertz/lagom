@@ -13,9 +13,9 @@ const printStatus = async (status) => {
 const getInlinedFile = async (fileName) => {
   const options = {
     'images': false,
-    'compressJS': false,
+    'compressJS': true,
     'collapseWhitespace': false,
-    'compressCSS': false,
+    'compressCSS': true,
     'preserveComments': true,
   }
 
@@ -35,7 +35,6 @@ export const deploy = async (fileName = 'index.html') => {
 
   try {
     fileExists = await fsp.exists(`./${fileName}`)
-
     if (!fileExists) throw new Error(`${fileName} doesn't exist`)
 
     inlinedHTML = await getInlinedFile(`./${fileName}`)
@@ -46,9 +45,21 @@ export const deploy = async (fileName = 'index.html') => {
 
     printStatus('shortening url')
 
-    shortenedUrl = await urlShortener(rawGistURL)
+    try {
+      shortenedUrl = await urlShortener(rawGistURL)
+      process.stdout.write(chalk.green(`◩         deployed: http://lagom.hook.io/?c=${shortenedUrl}\n`))
+    }
 
-    process.stdout.write(chalk.green(`◩         deployed: http://lagom.hook.io/?c=${shortenedUrl}\n`))
+    catch(e) {
+      let hash1 = rawGistURL.split('/')[4]
+      let hash2 = rawGistURL.split('/')[6]
+
+      process.stdout.write(chalk.red(  `◩         error: couldn't shorten url, fallbacking to regular full url.\n`))
+      process.stdout.write(chalk.green(`◩         deployed: http://lagom.hook.io/?h1=${hash1}&h2=${hash2}\n`))
+    }
+
+
+
   }
 
   catch(e) {

@@ -52,7 +52,7 @@
 	});
 	exports.deploy = undefined;
 
-	var _promise = __webpack_require__(7);
+	var _promise = __webpack_require__(8);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
@@ -64,19 +64,19 @@
 
 	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-	var _fsPromise = __webpack_require__(10);
+	var _fsPromise = __webpack_require__(11);
 
 	var _fsPromise2 = _interopRequireDefault(_fsPromise);
 
 	var _createGist = __webpack_require__(4);
 
-	var _urlShortener = __webpack_require__(5);
+	var _urlShortener = __webpack_require__(6);
 
-	var _chalk = __webpack_require__(8);
+	var _chalk = __webpack_require__(9);
 
 	var _chalk2 = _interopRequireDefault(_chalk);
 
-	var _inliner = __webpack_require__(11);
+	var _inliner = __webpack_require__(12);
 
 	var _inliner2 = _interopRequireDefault(_inliner);
 
@@ -112,9 +112,9 @@
 	          case 0:
 	            options = {
 	              'images': false,
-	              'compressJS': false,
+	              'compressJS': true,
 	              'collapseWhitespace': false,
-	              'compressCSS': false,
+	              'compressCSS': true,
 	              'preserveComments': true
 	            };
 	            return _context2.abrupt('return', new _promise2.default(function (resolve, reject) {
@@ -140,7 +140,7 @@
 	var deploy = exports.deploy = function () {
 	  var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
 	    var fileName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'index.html';
-	    var fileExists, inlinedHTML, rawGistURL, shortenedUrl;
+	    var fileExists, inlinedHTML, rawGistURL, shortenedUrl, hash1, hash2;
 	    return _regenerator2.default.wrap(function _callee3$(_context3) {
 	      while (1) {
 	        switch (_context3.prev = _context3.next) {
@@ -182,29 +182,43 @@
 
 	            printStatus('shortening url');
 
-	            _context3.next = 18;
+	            _context3.prev = 16;
+	            _context3.next = 19;
 	            return (0, _urlShortener.urlShortener)(rawGistURL);
 
-	          case 18:
+	          case 19:
 	            shortenedUrl = _context3.sent;
 
-
 	            process.stdout.write(_chalk2.default.green('\u25E9         deployed: http://lagom.hook.io/?c=' + shortenedUrl + '\n'));
-	            _context3.next = 25;
+	            _context3.next = 29;
 	            break;
 
-	          case 22:
-	            _context3.prev = 22;
-	            _context3.t0 = _context3['catch'](2);
+	          case 23:
+	            _context3.prev = 23;
+	            _context3.t0 = _context3['catch'](16);
+	            hash1 = rawGistURL.split('/')[4];
+	            hash2 = rawGistURL.split('/')[6];
 
-	            process.stdout.write(_chalk2.default.red('\u25E9         error: ' + _context3.t0.message + '\n'));
 
-	          case 25:
+	            process.stdout.write(_chalk2.default.red('\u25E9         error: couldn\'t shorten url, fallbacking to regular full url.\n'));
+	            process.stdout.write(_chalk2.default.green('\u25E9         deployed: http://lagom.hook.io/?h1=' + hash1 + '&h2=' + hash2 + '\n'));
+
+	          case 29:
+	            _context3.next = 34;
+	            break;
+
+	          case 31:
+	            _context3.prev = 31;
+	            _context3.t1 = _context3['catch'](2);
+
+	            process.stdout.write(_chalk2.default.red('\u25E9         error: ' + _context3.t1.message + '\n'));
+
+	          case 34:
 	          case 'end':
 	            return _context3.stop();
 	        }
 	      }
-	    }, _callee3, undefined, [[2, 22]]);
+	    }, _callee3, undefined, [[2, 31], [16, 23]]);
 	  }));
 
 	  return function deploy(_x3) {
@@ -245,7 +259,7 @@
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
 
-	var _stringify = __webpack_require__(6);
+	var _stringify = __webpack_require__(7);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -307,6 +321,28 @@
 
 /***/ },
 /* 5 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var checkStatus = function checkStatus(response) {
+	  if (response.ok) {
+	    return response;
+	  } else {
+	    var error = new Error(response.statusText);
+
+	    error.response = response;
+	    throw error;
+	  }
+	};
+
+	exports.default = checkStatus;
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -326,24 +362,29 @@
 
 	var urlShortener = exports.urlShortener = function () {
 	  var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(gistUrl) {
-	    var url, form;
+	    var form, response, shortUrl;
 	    return _regenerator2.default.wrap(function _callee$(_context) {
 	      while (1) {
 	        switch (_context.prev = _context.next) {
 	          case 0:
-	            url = '' + gistUrl;
+	            process.stdout.write(gistUrl);
 	            form = new _formData2.default();
 
-	            form.append('url', url);
+	            form.append('url', gistUrl);
 
-	            return _context.abrupt('return', (0, _nodeFetch2.default)(GIT_IO_URL, {
-	              method: 'post',
-	              body: form
-	            }).then(function (response) {
-	              return response.text();
-	            }));
+	            _context.next = 5;
+	            return (0, _nodeFetch2.default)(GIT_IO_URL, { method: 'post', body: form });
 
-	          case 4:
+	          case 5:
+	            response = _context.sent;
+	            _context.next = 8;
+	            return response.text();
+
+	          case 8:
+	            shortUrl = _context.sent;
+	            return _context.abrupt('return', shortUrl);
+
+	          case 10:
 	          case 'end':
 	            return _context.stop();
 	        }
@@ -360,46 +401,48 @@
 
 	var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
 
-	var _formData = __webpack_require__(9);
+	var _formData = __webpack_require__(10);
 
 	var _formData2 = _interopRequireDefault(_formData);
+
+	var _fetchUtils = __webpack_require__(5);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var GIT_IO_URL = 'https://git.io/create';
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/json/stringify");
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = require("babel-runtime/core-js/promise");
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = require("chalk");
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = require("form-data");
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = require("fs-promise");
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = require("inliner");
