@@ -30,6 +30,9 @@ body[data-lagom-is-presentation-window="true"] {
     text-align: center;
     background: white;
     padding: 1rem 2rem;
+    white-space: pre;
+    text-align: left;
+    max-width: 80%;
 
     &:empty {
       opacity: 0;
