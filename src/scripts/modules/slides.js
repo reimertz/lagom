@@ -11,7 +11,7 @@ export const nrOfSlides = slides.length
 document.body.setAttribute('data-lagom-total-slides', nrOfSlides)
 
 const setHash = id => {
-  history.replaceState({},`lagom.js - slide ${id}`, `#${id}`);
+  window.location.hash = id
 }
 
 const setProgress = id => {
