@@ -42,7 +42,7 @@
     "live-server": "git://github.com/reimertz/live-server.git",
     "mustache": "^2.2.1",
     "inliner": "git://github.com/reimertz/inliner.git",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "any-promise": "^1.3.0",
